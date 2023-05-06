@@ -1,0 +1,71 @@
+﻿<Properties StartupConfiguration="{23FE470B-0EC0-4D7D-9166-CA8F3042560F}|Default">
+  <MonoDevelop.Ide.ItemProperties.LuminateFinalProject PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="LuminateFinalProject/Areas/Manage/Views/Shared/_Layout.cshtml">
+    <Files>
+      <File FileName="LuminateFinalProject/Views/Shared/_Layout.cshtml" Line="41" Column="79" />
+      <File FileName="LuminateFinalProject/Controllers/HomeController.cs" Line="30" Column="35" />
+      <File FileName="LuminateFinalProject/DataAccessLayer/AppDbContext.cs" />
+      <File FileName="LuminateFinalProject/Models/Setting.cs" />
+      <File FileName="LuminateFinalProject/Models/BaseEntity.cs" />
+      <File FileName="LuminateFinalProject/Models/Product.cs" />
+      <File FileName="LuminateFinalProject/Models/ProductImage.cs" />
+      <File FileName="LuminateFinalProject/Models/Category.cs" />
+      <File FileName="LuminateFinalProject/Models/Material.cs" />
+      <File FileName="LuminateFinalProject/Program.cs" Line="14" Column="7" />
+      <File FileName="LuminateFinalProject/appsettings.json" />
+      <File FileName="LuminateFinalProject/Views/Home/Index.cshtml" Line="61" Column="69" />
+      <File FileName="LuminateFinalProject/Views/_ViewStart.cshtml" />
+      <File FileName="LuminateFinalProject/Views/_ViewImports.cshtml" Line="3" Column="54" />
+      <File FileName="LuminateFinalProject/ViewModels/HomeViewModels/HomeVM.cs" Line="9" Column="8" />
+      <File FileName="LuminateFinalProject/Views/Shared/_ProductCardPartial.cshtml" Line="11" Column="1" />
+      <File FileName="LuminateFinalProject/Views/Shop/Index.cshtml" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Controllers/ShopController.cs" Line="12" Column="9" />
+      <File FileName="LuminateFinalProject/Areas/Manage/Views/_ViewStart.cshtml" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Areas/Manage/Views/_ViewImports.cshtml" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Areas/Manage/Views/Shared/_Layout.cshtml" Line="139" Column="29" />
+      <File FileName="LuminateFinalProject/Areas/Manage/Controllers/DashboardController.cs" Line="10" Column="21" />
+      <File FileName="LuminateFinalProject/Areas/Manage/Views/Dashboard/Index.cshtml" Line="540" Column="25" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="LuminateFinalProject" expanded="True">
+            <Node name="LuminateFinalProject" expanded="True">
+              <Node name="Areas" expanded="True">
+                <Node name="Manage" expanded="True">
+                  <Node name="Controllers" expanded="True" />
+                  <Node name="Views" expanded="True">
+                    <Node name="Dashboard" expanded="True" />
+                    <Node name="Shared" expanded="True">
+                      <Node name="_Layout.cshtml" selected="True" />
+                    </Node>
+                  </Node>
+                </Node>
+              </Node>
+              <Node name="Controllers" expanded="True" />
+              <Node name="DataAccessLayer" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="ViewModels" expanded="True">
+                <Node name="HomeViewModels" expanded="True" />
+              </Node>
+              <Node name="Views" expanded="True">
+                <Node name="Home" expanded="True" />
+                <Node name="Shared" expanded="True" />
+                <Node name="Shop" expanded="True" />
+              </Node>
+              <Node name="wwwroot" expanded="True">
+                <Node name="manage" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
