@@ -22,6 +22,8 @@
     <None Remove="Areas\Manage\Views\" />
     <None Remove="Areas\Manage\Views\Shared\" />
     <None Remove="Areas\Manage\Views\Dashboard\" />
+    <None Remove="Areas\Manage\Views\Category\" />
+    <None Remove="Areas\Manage\Views\Material\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -41,6 +43,8 @@
     <Folder Include="Areas\Manage\Views\Shared\" />
     <Folder Include="wwwroot\manage\" />
     <Folder Include="Areas\Manage\Views\Dashboard\" />
+    <Folder Include="Areas\Manage\Views\Category\" />
+    <Folder Include="Areas\Manage\Views\Material\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\" />

@@ -16,8 +16,48 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject
 build_property._RazorSourceGeneratorDebug = 
 
+[/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Areas/Manage/Views/Category/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvTWFuYWdlL1ZpZXdzL0NhdGVnb3J5L0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Areas/Manage/Views/Category/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvTWFuYWdlL1ZpZXdzL0NhdGVnb3J5L0RlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Areas/Manage/Views/Category/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvTWFuYWdlL1ZpZXdzL0NhdGVnb3J5L0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Areas/Manage/Views/Category/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvTWFuYWdlL1ZpZXdzL0NhdGVnb3J5L0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Areas/Manage/Views/Category/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvTWFuYWdlL1ZpZXdzL0NhdGVnb3J5L1VwZGF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Areas/Manage/Views/Dashboard/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvTWFuYWdlL1ZpZXdzL0Rhc2hib2FyZC9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Areas/Manage/Views/Material/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvTWFuYWdlL1ZpZXdzL01hdGVyaWFsL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Areas/Manage/Views/Material/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvTWFuYWdlL1ZpZXdzL01hdGVyaWFsL0RlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Areas/Manage/Views/Material/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvTWFuYWdlL1ZpZXdzL01hdGVyaWFsL0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Areas/Manage/Views/Material/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvTWFuYWdlL1ZpZXdzL01hdGVyaWFsL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Areas/Manage/Views/Material/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvTWFuYWdlL1ZpZXdzL01hdGVyaWFsL1VwZGF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Areas/Manage/Views/Shared/_Layout.cshtml]
