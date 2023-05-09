@@ -24,6 +24,9 @@
     <None Remove="Areas\Manage\Views\Dashboard\" />
     <None Remove="Areas\Manage\Views\Category\" />
     <None Remove="Areas\Manage\Views\Material\" />
+    <None Remove="Areas\Manage\Views\Product\" />
+    <None Remove="Extensions\" />
+    <None Remove="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -45,6 +48,9 @@
     <Folder Include="Areas\Manage\Views\Dashboard\" />
     <Folder Include="Areas\Manage\Views\Category\" />
     <Folder Include="Areas\Manage\Views\Material\" />
+    <Folder Include="Areas\Manage\Views\Product\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\" />

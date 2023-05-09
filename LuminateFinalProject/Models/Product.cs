@@ -26,6 +26,12 @@ namespace LuminateFinalProject.Models
 
         public int MaterialId { get; set; }
         public Material Material { get; set; }
+
+        [NotMapped]
+        public List<IFormFile>? Files { get; set; }
+
+        [NotMapped]
+        public IFormFile? MainFile { get; set; }
     }
 }
 
