@@ -81,12 +81,20 @@
       "PackagePath": "staticwebassets/assets/images/logo/logo.png"
     },
     {
-      "Id": "/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/wwwroot/assets/images/product/follow-me-lamp-main.png",
-      "PackagePath": "staticwebassets/assets/images/product/follow-me-lamp-main.png"
+      "Id": "/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/wwwroot/assets/images/product/20230511142604459-Flow temp.jpeg",
+      "PackagePath": "staticwebassets/assets/images/product/20230511142604459-Flow temp.jpeg"
     },
     {
-      "Id": "/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/wwwroot/assets/images/product/follow-me-lamp-thumb-1.png",
-      "PackagePath": "staticwebassets/assets/images/product/follow-me-lamp-thumb-1.png"
+      "Id": "/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/wwwroot/assets/images/product/20230511172350300-picture.jpeg",
+      "PackagePath": "staticwebassets/assets/images/product/20230511172350300-picture.jpeg"
+    },
+    {
+      "Id": "/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/wwwroot/assets/images/product/20230511172423679-picture.jpeg",
+      "PackagePath": "staticwebassets/assets/images/product/20230511172423679-picture.jpeg"
+    },
+    {
+      "Id": "/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/wwwroot/assets/images/product/follow-me-lamp-main.png",
+      "PackagePath": "staticwebassets/assets/images/product/follow-me-lamp-main.png"
     },
     {
       "Id": "/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/wwwroot/assets/images/product/follow-me-lamp-thumb-2.png",
@@ -127,10 +135,6 @@
     {
       "Id": "/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/wwwroot/assets/images/product/nans-pf80-main.png",
       "PackagePath": "staticwebassets/assets/images/product/nans-pf80-main.png"
-    },
-    {
-      "Id": "/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/wwwroot/assets/images/product/nans-pf80-thumb-1.png",
-      "PackagePath": "staticwebassets/assets/images/product/nans-pf80-thumb-1.png"
     },
     {
       "Id": "/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/wwwroot/assets/images/product/nans-pf80-thumb-2.png",
@@ -331,6 +335,10 @@
     {
       "Id": "/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/wwwroot/manage/js/config.js",
       "PackagePath": "staticwebassets/manage/js/config.js"
+    },
+    {
+      "Id": "/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/wwwroot/manage/js/custom.js",
+      "PackagePath": "staticwebassets/manage/js/custom.js"
     },
     {
       "Id": "/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/wwwroot/manage/js/dashboards-analytics.js",

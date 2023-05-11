@@ -18,14 +18,14 @@ namespace LuminateFinalProject.Models
         public string Description { get; set; }
         [StringLength(1500)]
         public string FullDescription { get; set; }
-        public List<ProductImage> ProductImages { get; set; }
-        public string MainImage { get; set; }
+        public List<ProductImage>? ProductImages { get; set; }
+        public string? MainImage { get; set; }
 
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public Category? Category { get; set; }
 
         public int MaterialId { get; set; }
-        public Material Material { get; set; }
+        public Material? Material { get; set; }
 
         [NotMapped]
         public List<IFormFile>? Files { get; set; }

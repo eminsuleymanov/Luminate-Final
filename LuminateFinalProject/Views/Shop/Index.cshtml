@@ -1,11 +1,10 @@
-﻿
+﻿@model ShopVM
 
 <!-- Shop Page Heading -->
 <section id="Heading">
     <div class="container">
         <div class="heading-content">
             <div class="section-container">
-
                 <h1>The Shop</h1>
                 <p>Well designed lights for your home & office environments.  <br> Our high quality lights will make your place modern. </p>
                 <div class="category_btns">
@@ -32,22 +31,15 @@
                     <div class="filter">
                         <h5>Categories</h5>
                         <ul>
-                            <li>
-                                <a href="">Floor Lamps</a>
-                                <span>2</span>
-                            </li>
-                            <li>
-                                <a href="">Indoor Lighting</a>
-                                <span>8</span>
-                            </li>
-                            <li>
-                                <a href="">Outdoor Lighting</a>
-                                <span>2</span>
-                            </li>
-                            <li>
-                                <a href="">Wall Lighting</a>
-                                <span>2</span>
-                            </li>
+                            @foreach (Category category in Model.Categories)
+                            {
+                                <li>
+                                    <a asp-route-categoryId="@category.Id" >@category.Name</a>
+                                    <span>@category.Products.Count()</span>
+                                </li>
+
+                            }
+
                         </ul>
 
                     </div>
@@ -55,24 +47,15 @@
                     <div class="filter">
                         <h5>Material</h5>
                         <ul>
-                            <li>
-                                <input type="checkbox" name="" id="">
-                                <a href="">Glass</a>
-                                <span>2</span>
-                            </li>
-                            <li>
-                                <input type="checkbox" name="" id="">
+                            @foreach (Material material in Model.Materials)
+                            {
+                                <li>
+                                    <input type="checkbox" name="" id="">
+                                    <a asp-route-materialId="@material.Id">@material.Name</a>
+                                    <span>@material.Products.Count()</span>
+                                </li>
 
-                                <a href="">Metal</a>
-                                <span>8</span>
-                            </li>
-                            <li>
-                                <input type="checkbox" name="" id="">
-
-                                <a href="">Others</a>
-                                <span>2</span>
-                            </li>
-
+                            }
                         </ul>
 
                     </div>
@@ -109,207 +92,8 @@
                     <!-- Product Preview Section -->
                     <section id="HandPicked_Lights">
                         <div class="handLights">
-                            <div class="handLight shop-page-product">
-                                <div class="product-inf">
-                                    <a href="https://demo.agnidesigns.com/luminate/product/follow-me-table-lamp/">
-                                        <span class="on-sale">Sale!</span>
-                                        <img src="	https://demo.agnidesigns.com/luminate/wp-content/uploads/2022/06/product-thumbnail-28-420x560.png" alt="">
-                                        <h4>Follow Me Table Lamp</h4>
-                                    </a>
-
-                                </div>
-
-                                <div class="prices">
-                                    <del><span class="product_salePrice">$3,449.00</span></del>
-                                    <span class="product_Price">$3,200.00</span>
-                                </div>
-                                <div class="rating">
-                                    <span><i class='bx bxs-star'></i></span>
-                                    <span><i class='bx bxs-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                </div>
-                                <div class="cart_btn">
-                                    <a href="" class="addToCart">Add To Cart</a>
-                                </div>
-
-                            </div>
-                            <div class="handLight shop-page-product">
-                                <a class="product-inf" href="https://demo.agnidesigns.com/luminate/product/follow-me-table-lamp/">
-                                    <img src="https://demo.agnidesigns.com/luminate/wp-content/uploads/2022/06/product-thumbnail-24-420x560.png" alt="">
-                                    <h4>Nans PF:80 Outdoor Ceiling Lamp</h4>
-                                </a>
-                                <div class="prices">
-                                    <span class="product_price">$4,900.00</span>
-                                </div>
-                                <div class="rating">
-                                    <span><i class='bx bx-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                </div>
-                                <div class="cart_btn">
-                                    <a href="" class="addToCart">Add To Cart</a>
-                                </div>
-                            </div>
-                            <div class="handLight shop-page-product">
-                                <a class="product-inf" href="https://demo.agnidesigns.com/luminate/product/follow-me-table-lamp/">
-                                    <img src="https://demo.agnidesigns.com/luminate/wp-content/uploads/2022/06/product-thumbnail-12-420x560.png" alt="">
-                                    <h4>Heavy Desk Light</h4>
-                                </a>
-                                <div class="prices">
-                                    <span class="product_price">$449.00</span>
-                                </div>
-                                <div class="rating">
-                                    <span><i class='bx bxs-star'></i></span>
-                                    <span><i class='bx bxs-star'></i></span>
-                                    <span><i class='bx bxs-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                </div>
-                                <div class="cart_btn">
-                                    <a href="" class="addToCart">Add To Cart</a>
-
-                                </div>
-                            </div>
-                            <div class="handLight shop-page-product">
-                                <div class="product-inf">
-                                    <a href="https://demo.agnidesigns.com/luminate/product/follow-me-table-lamp/">
-                                        <span class="on-sale">Sale!</span>
-                                        <img src="	https://demo.agnidesigns.com/luminate/wp-content/uploads/2022/06/product-thumbnail-28-420x560.png" alt="">
-                                        <h4>Follow Me Table Lamp</h4>
-                                    </a>
-
-                                </div>
-
-                                <div class="prices">
-                                    <del><span class="product_salePrice">$3,449.00</span></del>
-                                    <span class="product_Price">$3,200.00</span>
-                                </div>
-                                <div class="rating">
-                                    <span><i class='bx bxs-star'></i></span>
-                                    <span><i class='bx bxs-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                </div>
-                                <div class="cart_btn">
-                                    <a href="" class="addToCart">Add To Cart</a>
-                                </div>
-
-                            </div>
-                            <div class="handLight shop-page-product">
-                                <a class="product-inf" href="https://demo.agnidesigns.com/luminate/product/follow-me-table-lamp/">
-                                    <img src="https://demo.agnidesigns.com/luminate/wp-content/uploads/2022/06/product-thumbnail-24-420x560.png" alt="">
-                                    <h4>Nans PF:80 Outdoor Ceiling Lamp</h4>
-                                </a>
-                                <div class="prices">
-                                    <span class="product_price">$4,900.00</span>
-                                </div>
-                                <div class="rating">
-                                    <span><i class='bx bx-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                </div>
-                                <div class="cart_btn">
-                                    <a href="" class="addToCart">Add To Cart</a>
-                                </div>
-                            </div>
-                            <div class="handLight shop-page-product">
-                                <div class="product-inf">
-                                    <a href="https://demo.agnidesigns.com/luminate/product/follow-me-table-lamp/">
-                                        <span class="on-sale">Sale!</span>
-                                        <img src="	https://demo.agnidesigns.com/luminate/wp-content/uploads/2022/06/product-thumbnail-28-420x560.png" alt="">
-                                        <h4>Follow Me Table Lamp</h4>
-                                    </a>
-
-                                </div>
-
-                                <div class="prices">
-                                    <del><span class="product_salePrice">$3,449.00</span></del>
-                                    <span class="product_Price">$3,200.00</span>
-                                </div>
-                                <div class="rating">
-                                    <span><i class='bx bxs-star'></i></span>
-                                    <span><i class='bx bxs-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                </div>
-                                <div class="cart_btn">
-                                    <a href="" class="addToCart">Add To Cart</a>
-                                </div>
-
-                            </div>
-                            <div class="handLight shop-page-product">
-                                <div class="product-inf">
-                                    <a href="https://demo.agnidesigns.com/luminate/product/follow-me-table-lamp/">
-                                        <span class="on-sale">Sale!</span>
-                                        <img src="	https://demo.agnidesigns.com/luminate/wp-content/uploads/2022/06/product-thumbnail-28-420x560.png" alt="">
-                                        <h4>Follow Me Table Lamp</h4>
-                                    </a>
-
-                                </div>
-
-                                <div class="prices">
-                                    <del><span class="product_salePrice">$3,449.00</span></del>
-                                    <span class="product_Price">$3,200.00</span>
-                                </div>
-                                <div class="rating">
-                                    <span><i class='bx bxs-star'></i></span>
-                                    <span><i class='bx bxs-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                </div>
-                                <div class="cart_btn">
-                                    <a href="" class="addToCart">Add To Cart</a>
-                                </div>
-
-                            </div>
-                            <div class="handLight shop-page-product">
-                                <a class="product-inf" href="https://demo.agnidesigns.com/luminate/product/follow-me-table-lamp/">
-                                    <img src="https://demo.agnidesigns.com/luminate/wp-content/uploads/2022/06/product-thumbnail-24-420x560.png" alt="">
-                                    <h4>Nans PF:80 Outdoor Ceiling Lamp</h4>
-                                </a>
-                                <div class="prices">
-                                    <span class="product_price">$4,900.00</span>
-                                </div>
-                                <div class="rating">
-                                    <span><i class='bx bx-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                </div>
-                                <div class="cart_btn">
-                                    <a href="" class="addToCart">Add To Cart</a>
-                                </div>
-                            </div>
-                            <div class="handLight shop-page-product">
-                                <a class="product-inf" href="https://demo.agnidesigns.com/luminate/product/follow-me-table-lamp/">
-                                    <img src="https://demo.agnidesigns.com/luminate/wp-content/uploads/2022/06/product-thumbnail-12-420x560.png" alt="">
-                                    <h4>Heavy Desk Light</h4>
-                                </a>
-                                <div class="prices">
-                                    <span class="product_price">$449.00</span>
-                                </div>
-                                <div class="rating">
-                                    <span><i class='bx bxs-star'></i></span>
-                                    <span><i class='bx bxs-star'></i></span>
-                                    <span><i class='bx bxs-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                    <span><i class='bx bx-star'></i></span>
-                                </div>
-                                <div class="cart_btn">
-                                    <a href="" class="addToCart">Add To Cart</a>
-
-                                </div>
-                            </div>
+                            @await Html.PartialAsync("_ShopListPartial", Model.Products)
+                            
 
                         </div>
                     </section>
@@ -318,11 +102,26 @@
                     <!-- Pagination -->
                     <div class="pagination">
                         <ul class="pagination-box">
-                            <!-- <li><a class="previous" href=""><i class='bx bx-left-arrow-alt'></i></a></li> -->
-                            <li><a href="">1</a></li>
-                            <li><a href="">2</a></li>
-                            <li><a href="">3</a></li>
-                            <li><a class="next" href=""><i class='bx bx-right-arrow-alt'></i></a></li>
+                            @if (Model.Products.PageIndex > 1)
+                            {
+                                <li><a class="previous" asp-controller="shop" asp-action="index" asp-route-pageIndex="@(Model.Products.PageIndex-1)"><i class='bx bx-left-arrow-alt'></i></a></li>
+                            }
+                            @for (int i = Model.Products.StartPage; i <= Model.Products.EndPage; i++)
+                            {
+                                <li class="@(Model.Products.PageIndex == i ? "active":"")">
+                                    <a asp-action="Index" asp-controller="shop"  asp-route-pageIndex="@i">@i</a>
+                                </li>
+                            }
+
+                            @if (Model.Products.PageIndex < Model.Products.TotalPage)
+                            {
+                                <li >
+                                    <a class="next" asp-action="Index" asp-controller="shop"  asp-route-pageIndex="@(Model.Products.PageIndex+1)">
+                                        <i class='bx bx-right-arrow-alt'></i>
+                                    </a>
+                                </li>
+
+                            }
 
                         </ul>
                     </div>

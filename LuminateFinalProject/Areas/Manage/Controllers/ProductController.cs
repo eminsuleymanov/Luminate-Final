@@ -33,11 +33,12 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Detail(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return BadRequest();
 
-            Product product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id && p.IsDeleted == false);
+            Product product = await _context.Products.Include(pi=>pi.ProductImages.Where(pii=>pii.IsDeleted==false))
+                .FirstOrDefaultAsync(p => p.Id == id && p.IsDeleted == false);
 
             if (product == null) return NotFound();
 

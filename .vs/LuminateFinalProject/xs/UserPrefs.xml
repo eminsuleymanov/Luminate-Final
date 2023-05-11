@@ -1,33 +1,11 @@
 ﻿<Properties StartupConfiguration="{23FE470B-0EC0-4D7D-9166-CA8F3042560F}|Default">
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="LuminateFinalProject/Areas/Manage/Controllers/ProductController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="LuminateFinalProject/Controllers/ShopController.cs">
     <Files>
-      <File FileName="LuminateFinalProject/Areas/Manage/Controllers/CategoryController.cs" Line="41" Column="10" />
-      <File FileName="LuminateFinalProject/Areas/Manage/Controllers/MaterialController.cs" />
-      <File FileName="LuminateFinalProject/Areas/Manage/Views/Material/Details.cshtml" />
-      <File FileName="LuminateFinalProject/Areas/Manage/Views/Category/Details.cshtml" Line="3" Column="4" />
-      <File FileName="LuminateFinalProject/Areas/Manage/Views/Material/Create.cshtml" />
-      <File FileName="LuminateFinalProject/Areas/Manage/Views/Category/Create.cshtml" Line="14" Column="20" />
-      <File FileName="LuminateFinalProject/Areas/Manage/Views/Material/Index.cshtml" />
-      <File FileName="LuminateFinalProject/Areas/Manage/Views/Material/Update.cshtml" Line="3" Column="77" />
-      <File FileName="LuminateFinalProject/Areas/Manage/Views/Category/Update.cshtml" />
-      <File FileName="LuminateFinalProject/Areas/Manage/Views/Material/Delete.cshtml" />
-      <File FileName="LuminateFinalProject/Areas/Manage/Views/Category/Delete.cshtml" />
-      <File FileName="LuminateFinalProject/Areas/Manage/Views/Category/Index.cshtml" Line="6" Column="1" />
-      <File FileName="LuminateFinalProject/Areas/Manage/Controllers/ProductController.cs" Line="239" Column="47" />
-      <File FileName="LuminateFinalProject/Areas/Manage/Controllers/DashboardController.cs" Line="1" Column="1" />
-      <File FileName="LuminateFinalProject/ViewModels/PagenatedList.cs" Line="52" Column="29" />
-      <File FileName="LuminateFinalProject/Areas/Manage/Views/Product/Index.cshtml" Line="67" Column="80" />
-      <File FileName="LuminateFinalProject/Areas/Manage/Views/_ViewImports.cshtml" Line="4" Column="39" />
-      <File FileName="LuminateFinalProject/Areas/Manage/Views/Shared/_Layout.cshtml" Line="138" Column="60" />
-      <File FileName="LuminateFinalProject/Areas/Manage/Views/Product/Create.cshtml" Line="47" Column="52" />
-      <File FileName="LuminateFinalProject/Extensions/FileExtention.cs" Line="18" Column="78" />
-      <File FileName="LuminateFinalProject/Helpers/FileHelper.cs" Line="21" Column="10" />
-      <File FileName="LuminateFinalProject/Models/ProductImage.cs" Line="1" Column="1" />
-      <File FileName="LuminateFinalProject/Models/Product.cs" Line="34" Column="9" />
+      <File FileName="LuminateFinalProject/Areas/Manage/Views/Product/Index.cshtml" Line="77" Column="14" IsPinned="True" />
+      <File FileName="LuminateFinalProject/Views/Shop/Index.cshtml" Line="58" Column="30" />
+      <File FileName="LuminateFinalProject/Controllers/ShopController.cs" Line="28" Column="14" />
+      <File FileName="LuminateFinalProject/Areas/Manage/Controllers/ProductController.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -36,29 +14,33 @@
             <Node name="LuminateFinalProject" expanded="True">
               <Node name="Areas" expanded="True">
                 <Node name="Manage" expanded="True">
-                  <Node name="Controllers" expanded="True">
-                    <Node name="ProductController.cs" selected="True" />
-                  </Node>
+                  <Node name="Controllers" expanded="True" />
                   <Node name="Views" expanded="True">
-                    <Node name="Category" expanded="True" />
                     <Node name="Product" expanded="True" />
+                    <Node name="Shared" expanded="True" />
                   </Node>
                 </Node>
               </Node>
-              <Node name="Controllers" expanded="True" />
-              <Node name="DataAccessLayer" expanded="True" />
-              <Node name="Extensions" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="ShopController.cs" selected="True" />
+              </Node>
               <Node name="Helpers" expanded="True" />
-              <Node name="Models" expanded="True" />
-              <Node name="ViewModels" expanded="True" />
+              <Node name="ViewModels" expanded="True">
+                <Node name="HomeViewModels" expanded="True" />
+                <Node name="ShopViewModels" expanded="True" />
+              </Node>
               <Node name="Views" expanded="True">
                 <Node name="Home" expanded="True" />
                 <Node name="Shared" expanded="True" />
                 <Node name="Shop" expanded="True" />
               </Node>
               <Node name="wwwroot" expanded="True">
-                <Node name="assets" expanded="True">
-                  <Node name="images" expanded="True" />
+                <Node name="assets" expanded="True" />
+                <Node name="manage" expanded="True">
+                  <Node name="css" expanded="True" />
+                  <Node name="vendor" expanded="True">
+                    <Node name="css" expanded="True" />
+                  </Node>
                 </Node>
               </Node>
             </Node>
@@ -67,7 +49,10 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.LuminateFinalProject PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

@@ -27,6 +27,7 @@
     <None Remove="Areas\Manage\Views\Product\" />
     <None Remove="Extensions\" />
     <None Remove="Helpers\" />
+    <None Remove="ViewModels\ShopViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -51,6 +52,7 @@
     <Folder Include="Areas\Manage\Views\Product\" />
     <Folder Include="Extensions\" />
     <Folder Include="Helpers\" />
+    <Folder Include="ViewModels\ShopViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\" />

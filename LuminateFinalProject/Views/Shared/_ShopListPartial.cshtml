@@ -1,0 +1,42 @@
+﻿@model List<Product>
+@foreach (Product product in Model)
+{
+    <div class="handLight shop-page-product">
+        <div class="product-inf">
+            <a asp-controller="product" asp-action="details" asp-route-id="@product.Id">
+                @if (product.DiscountedPrice > 0)
+                {
+                    <span class="on-sale">Sale!</span>
+                }
+                <img src="~/assets/images/product/@product.MainImage" alt="">
+                <h4>@product.Title</h4>
+            </a>
+
+        </div>
+
+        <div class="prices">
+            @if (product.DiscountedPrice > 0)
+            {
+                <del><span class="product_salePrice">$3,449.00</span></del>
+                <span class="product_Price">$3,200.00</span>
+
+            }
+            else
+            {
+                <span class="product_Price">$3,200.00</span>
+            }
+        </div>
+        <div class="rating">
+            <span><i class='bx bxs-star'></i></span>
+            <span><i class='bx bxs-star'></i></span>
+            <span><i class='bx bx-star'></i></span>
+            <span><i class='bx bx-star'></i></span>
+            <span><i class='bx bx-star'></i></span>
+        </div>
+        <div class="cart_btn">
+            <a data-id="@product.Id" class="addToCart">Add To Cart</a>
+        </div>
+
+    </div>
+
+}
