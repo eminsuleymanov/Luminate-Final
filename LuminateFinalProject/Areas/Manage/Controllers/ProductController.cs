@@ -26,7 +26,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
 
         public IActionResult Index(int pageIndex = 1)
         {
-            IQueryable<Product> products = _context.Products
+            IEnumerable<Product> products = _context.Products
                 .Where(p => p.IsDeleted == false);
             return View(PagenatedList<Product>.Create(products, pageIndex, 4));
             
@@ -73,15 +73,15 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
 
             if (product.MainFile != null)
             {
-                if (!product.MainFile.CheckFileContentType("image/jpeg"))
+                if (!(product.MainFile.CheckFileContentType("image/jpeg")|| product.MainFile.CheckFileContentType("image/png")))
                 {
-                    ModelState.AddModelError("MainFile", "Main File Jpg olmalidir");
+                    ModelState.AddModelError("MainFile", "Main File Jpg ve ya Png olmalidir");
                     return View(product);
                 }
-                if (!product.MainFile.CheckFileLength(1800))
+                if (!product.MainFile.CheckFileLength(3500))
                 {
 
-                    ModelState.AddModelError("MainFile", "Main File 1800kb olmalidir");
+                    ModelState.AddModelError("MainFile", "Main File 3.5mb-dan kicik olmalidir");
                     return View(product);
                 }
                 product.MainImage = await product.MainFile.CreateFileAsync(_env, "assets", "images", "product");
@@ -111,15 +111,15 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
                 List<ProductImage> productImages = new List<ProductImage>();
                 foreach (IFormFile file in product.Files)
                 {
-                    if (!file.CheckFileContentType("image/jpeg"))
+                    if (!(file.CheckFileContentType("image/jpeg") || file.CheckFileContentType("image/png")))
                     {
-                        ModelState.AddModelError("Files", $"{file.FileName} Jpg olmalidir");
+                        ModelState.AddModelError("Files", $"{file.FileName} Jpg ve ya png olmalidir");
                         return View(product);
                     }
-                    if (!file.CheckFileLength(1800))
+                    if (!file.CheckFileLength(3000))
                     {
 
-                        ModelState.AddModelError("Files", $"{file.FileName} 1800kb olmalidir");
+                        ModelState.AddModelError("Files", $"{file.FileName} 3000kb olmalidir");
                         return View(product);
                     }
                     ProductImage productImage = new ProductImage

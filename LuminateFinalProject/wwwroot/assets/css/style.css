@@ -343,8 +343,8 @@ header  .header-all .leftpart .searchBar i{
 #HandPicked_Lights .handLights{
     display: flex;
     flex-wrap: wrap;
-    gap: 50px 20px;
-    justify-content: space-between;
+    gap: 50px 40px;
+/*    justify-content: space-between;*/
 }
 #HandPicked_Lights .handLights .handLight{
     width: calc(32.5% - 20px);
@@ -858,7 +858,7 @@ input[type=checkbox]:checked::before {
     margin-top: 2.5rem;
     border: 1.5px solid #242A2E;
     border-radius: 32px;
-    padding: 10px 20px;
+    padding: 10px 15px;
     position: relative;
     font-weight: 100;
 }
@@ -866,9 +866,9 @@ input[type=checkbox]:checked::before {
     outline: none;
     border: none;
     position: absolute;
-    left: 77%;
+    left: 80%;
     top: 12%;
-    padding: 5px 20px;
+    padding: 5px 13px;
     background-color: #E4E4E0;
     border-radius: 32px;
     font-weight: 100;
@@ -1481,13 +1481,15 @@ input[type=checkbox]:checked::before {
     display: flex;
     flex-direction: column;
     height: 70%;
-    justify-content: space-between;
     margin-right: 30px;
 }
-#ProductDetail .product-inner .product-details{
-    width: 45%;
-    padding: 0 20px;
-}
+    #ProductDetail .product-inner .product-thumb-images ul li{
+        margin-bottom:20px;
+    }
+    #ProductDetail .product-inner .product-details {
+        width: 45%;
+        padding: 0 20px;
+    }
 #ProductDetail .product-inner .product-details h2{
     font-size: 42px;
     font-weight: 100;
@@ -1668,17 +1670,18 @@ input[type=checkbox]:checked::before {
     width: 39%;
     margin: 0 auto;
 }
-#Sign .login-register-tabs ul{
+#Sign .login-register-tabs .logreg-tabs {
     display: flex;
 }
-#Sign .login-register-tabs ul .log-reg-tab-li{
-    font-size: 20px;
-    width: 100%;
-    text-align: center;
-    font-weight: 600;
-    position: relative;
-    cursor: pointer;
-}
+    #Sign .login-register-tabs .logreg-tabs .log-reg-tab-li {
+        font-size: 20px;
+        width: 100%;
+        text-align: center;
+        font-weight: 600;
+        position: relative;
+        cursor: pointer;
+        color: #242A2E;
+    }
 #Sign .login-register-tab-content{
     margin: 40px 0;
     display: none;

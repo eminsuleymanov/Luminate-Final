@@ -1,11 +1,20 @@
 ﻿<Properties StartupConfiguration="{23FE470B-0EC0-4D7D-9166-CA8F3042560F}|Default">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.LuminateFinalProject PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="LuminateFinalProject/Controllers/ShopController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="LuminateFinalProject/Controllers/AccountController.cs">
     <Files>
-      <File FileName="LuminateFinalProject/Areas/Manage/Views/Product/Index.cshtml" Line="77" Column="14" IsPinned="True" />
-      <File FileName="LuminateFinalProject/Views/Shop/Index.cshtml" Line="58" Column="30" />
-      <File FileName="LuminateFinalProject/Controllers/ShopController.cs" Line="28" Column="14" />
-      <File FileName="LuminateFinalProject/Areas/Manage/Controllers/ProductController.cs" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Controllers/AccountController.cs" Line="118" Column="1" />
+      <File FileName="LuminateFinalProject/Views/Account/Register.cshtml" Line="18" Column="97" />
+      <File FileName="LuminateFinalProject/ViewModels/AccountViewModels/LoginVM.cs" Line="11" Column="9" />
+      <File FileName="LuminateFinalProject/ViewModels/AccountViewModels/RegisterVM.cs" Line="21" Column="45" />
+      <File FileName="LuminateFinalProject/Views/Account/Login.cshtml" Line="1" Column="15" />
+      <File FileName="LuminateFinalProject/Program.cs" Line="29" Column="1" />
+      <File FileName="LuminateFinalProject/Areas/Manage/Controllers/DashboardController.cs" Line="12" Column="41" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,31 +25,28 @@
                 <Node name="Manage" expanded="True">
                   <Node name="Controllers" expanded="True" />
                   <Node name="Views" expanded="True">
-                    <Node name="Product" expanded="True" />
                     <Node name="Shared" expanded="True" />
                   </Node>
                 </Node>
               </Node>
               <Node name="Controllers" expanded="True">
-                <Node name="ShopController.cs" selected="True" />
+                <Node name="AccountController.cs" selected="True" />
               </Node>
-              <Node name="Helpers" expanded="True" />
               <Node name="ViewModels" expanded="True">
+                <Node name="AccountViewModels" expanded="True" />
                 <Node name="HomeViewModels" expanded="True" />
                 <Node name="ShopViewModels" expanded="True" />
               </Node>
               <Node name="Views" expanded="True">
+                <Node name="Account" expanded="True" />
                 <Node name="Home" expanded="True" />
-                <Node name="Shared" expanded="True" />
+                <Node name="Product" expanded="True" />
                 <Node name="Shop" expanded="True" />
               </Node>
               <Node name="wwwroot" expanded="True">
-                <Node name="assets" expanded="True" />
-                <Node name="manage" expanded="True">
+                <Node name="assets" expanded="True">
                   <Node name="css" expanded="True" />
-                  <Node name="vendor" expanded="True">
-                    <Node name="css" expanded="True" />
-                  </Node>
+                  <Node name="js" expanded="True" />
                 </Node>
               </Node>
             </Node>
@@ -49,10 +55,4 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.LuminateFinalProject PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

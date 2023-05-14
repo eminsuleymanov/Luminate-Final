@@ -1,22 +1,3 @@
-$( function() {
-    const sliderRange = $( "#slider-range" );
-    const minSpan = $( "#min-value" );
-    const maxSpan = $( "#max-value" );
-    
-    sliderRange.slider({
-      range: true,
-      min: 0,
-      max: 8500,
-      values: [ 2000, 3000 ],
-      slide: function( event, ui ) {
-        minSpan.text(ui.values[ 0 ].toFixed(2));
-        maxSpan.text(ui.values[ 1 ].toFixed(2));
-      }
-    });
-    
-    minSpan.text(sliderRange.slider( "values", 0 ).toFixed(2));
-    maxSpan.text(sliderRange.slider( "values", 1 ).toFixed(2));
-});
 
   let dashboardTabLi = document.querySelectorAll('.tab-li');
   let dashboardContent = document.querySelectorAll('.my-account-content');
@@ -141,4 +122,29 @@ minusQtyBtn();
 
 
 
+////////////
+$(document).on('click', '.categoryFilter', function () {
+    let categoryId = $(this).attr('data-categoryId');
+    let pageIndex = $(".pageIn").attr('data-pageIndex');
+    fetch("/shop/shopfilters?categoryId=" + categoryId + "&pageIndex=" + pageIndex)
+        .then(res => {
+            return res.text();
+        })
+        .then(data => {
+        
+            $('#Shop').html(data);
+        });
+});
+
+$(document).on('click', '.pageIn', function () {
+    let categoryId = $(this).attr('data-categoryId');
+    let pageIndex = $(this).attr('data-pageIndex');
+    fetch("/shop/shopfilters?categoryId=" + categoryId + "&pageIndex=" + pageIndex)
+        .then(res => {
+            return res.text();
+        })
+        .then(data => {
+            $('#Shop').html(data);
+        });
+});
 

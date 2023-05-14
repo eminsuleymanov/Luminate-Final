@@ -4,7 +4,7 @@
 {
     <div class="handLight">
         <div class="product-inf">
-            <a href="https://demo.agnidesigns.com/luminate/product/follow-me-table-lamp/">
+            <a asp-controller="product" asp-action="details" asp-route-id="@product.Id">
                 @if (product.DiscountedPrice > 0)
                 {
                     <span class="on-sale">Sale!</span>

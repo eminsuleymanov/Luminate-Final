@@ -44,7 +44,7 @@ namespace LuminateFinalProject.ViewModels
         public bool HasPrev => PageIndex > 1;
         public bool HasNext => PageIndex < TotalPage;
 
-        public static PagenatedList<T> Create(IQueryable<T> query, int pageIndex, int itemCount)
+        public static PagenatedList<T> Create(IEnumerable<T> query, int pageIndex, int itemCount)
         {
             int totalPage = (int)Math.Ceiling((decimal)query.Count() / itemCount);
             query = query.Skip((pageIndex - 1) * itemCount).Take(itemCount);

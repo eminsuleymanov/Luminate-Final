@@ -19,11 +19,11 @@ namespace LuminateFinalProject.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> Index(int pageIndex=1)
+        public async Task<IActionResult> Index(int? categoryId,int pageIndex=1)
         {
-            IQueryable<Product> products = _context.Products
+            IEnumerable<Product> products = _context.Products
                 .Where(p => p.IsDeleted == false);
-
+            ViewBag.categoryId = categoryId;
             ShopVM shopVM = new ShopVM
             {
                 Products = PagenatedList<Product>.Create(products, pageIndex, 6),
@@ -35,8 +35,31 @@ namespace LuminateFinalProject.Controllers
 
         public async Task<IActionResult> ShopFilters(int? categoryId,int? materialId,int pageIndex = 1)
         {
+            IEnumerable<Product> products =  _context.Products
+                .Where(p => p.IsDeleted == false);
+            if (categoryId !=null)
+            {
+                products = products.Where(p => p.CategoryId == (int)categoryId).ToList();
+                ViewBag.categoryId = categoryId;
 
-            return PartialView("_ShopListPartial");
+            }
+            //ViewBag.totalPages =(int)Math.Ceiling((decimal)products.Count() / 6) ;
+            products = products.Skip((pageIndex - 1) * 6).Take(6);
+            //if (materialId != null)
+            //{
+            //    products = products.Where(p => p.MaterialId == materialId).ToList();
+            //    ViewBag.materialId = materialId;
+
+            //}
+            ViewBag.pageIndex = pageIndex;
+            ShopVM shopVM = new ShopVM
+            {
+                Products = PagenatedList<Product>.Create(products, pageIndex, 6),
+                Materials = await _context.Materials.Where(m => m.IsDeleted == false).ToListAsync(),
+                Categories = await _context.Categories.Where(c => c.IsDeleted == false).ToListAsync()
+            };
+
+            return PartialView("_ShopListPartial",shopVM);
         }
     }
 }

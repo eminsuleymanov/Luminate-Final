@@ -21,4 +21,18 @@
         $(this).closest(".product-description-full").prev(".product-description-short").show();
     });
 
+    
+
 })
+const menuItems = document.querySelectorAll('.menu-item');
+
+menuItems.forEach(item => {
+    item.addEventListener('click',() => {
+        
+        menuItems.forEach(item => {
+            item.classList.remove('active');
+
+        });
+        event.currentTarget.classList.add('active');
+    });
+});
