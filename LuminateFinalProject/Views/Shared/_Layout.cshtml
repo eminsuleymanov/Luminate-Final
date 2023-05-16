@@ -21,7 +21,7 @@
             <div class="header-all">
                 <div class="leftpart align-items-center">
                     <div class="logo">
-                        <a href="index.html">
+                        <a asp-controller="Home" asp-action="index">
                             <img src="~/assets/images/logo/logo.png" alt="">
                         </a>
 
@@ -51,7 +51,7 @@
                                                         <p>Essential Pages</p>
                                                         <ul class="dropdown-column">
                                                             <li>
-                                                                <a href="product-details.html">
+                                                                <a asp-controller="product" asp-action="details">
                                                                     <span>Simple Product</span>
                                                                 </a>
                                                             </li>
@@ -196,9 +196,22 @@
                 </div>
                 <div class="rightpart">
                     <div id="account">
-                        <a href="my-account.html">
-                            <i class='bx bxs-user'></i>
-                        </a>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+                        {
+                            <a asp-controller="account" asp-action="profile">
+                                <i class='bx bxs-user'></i>
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-controller="account" asp-action="login">
+                                <i class='bx bxs-user'></i>
+                            </a>
+
+                        }
+
+
+
 
                     </div>
                     <div id="cart">

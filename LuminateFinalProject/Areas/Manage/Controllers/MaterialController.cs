@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using LuminateFinalProject.DataAccessLayer;
 using LuminateFinalProject.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace LuminateFinalProject.Areas.Manage.Controllers
 {
     [Area("manage")]
+    [Authorize(Roles = "SuperAdmin,Admin")]
     public class MaterialController : Controller
     {
         private readonly AppDbContext _context;
@@ -18,12 +21,14 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
         {
             _context = context;
         }
+        [Authorize(Roles = "SuperAdmin,Admin")]
         public IActionResult Index()
         {
             IQueryable<Material> materials = _context.Materials.Where(m => m.IsDeleted == false).OrderByDescending(m => m.Id);
             return View(materials);
         }
         [HttpGet]
+        [Authorize(Roles = "SuperAdmin,Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return BadRequest();
@@ -36,6 +41,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "SuperAdmin")]
         public IActionResult Create()
         {
             return View();
@@ -43,6 +49,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> Create(Material material)
         {
             if (!ModelState.IsValid)
@@ -66,6 +73,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "SuperAdmin,Admin")]
         public async Task<IActionResult> Update(int? id)
         {
             if (id == null) return BadRequest();
@@ -78,6 +86,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SuperAdmin,Admin")]
         public async Task<IActionResult> Update(int? id, Material material)
         {
             if (!ModelState.IsValid) return BadRequest();
@@ -102,6 +111,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return BadRequest();
@@ -116,6 +126,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> DeleteMaterial(int? id)
         {
             if (id == null) return BadRequest();

@@ -1,53 +1,54 @@
 ﻿<Properties StartupConfiguration="{23FE470B-0EC0-4D7D-9166-CA8F3042560F}|Default">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.LuminateFinalProject PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.ItemProperties.LuminateFinalProject PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="LuminateFinalProject/Controllers/AccountController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="LuminateFinalProject/Views/Product/Details.cshtml">
     <Files>
-      <File FileName="LuminateFinalProject/Controllers/AccountController.cs" Line="118" Column="1" />
+      <File FileName="LuminateFinalProject/Controllers/AccountController.cs" Line="239" Column="13" />
       <File FileName="LuminateFinalProject/Views/Account/Register.cshtml" Line="18" Column="97" />
-      <File FileName="LuminateFinalProject/ViewModels/AccountViewModels/LoginVM.cs" Line="11" Column="9" />
-      <File FileName="LuminateFinalProject/ViewModels/AccountViewModels/RegisterVM.cs" Line="21" Column="45" />
-      <File FileName="LuminateFinalProject/Views/Account/Login.cshtml" Line="1" Column="15" />
-      <File FileName="LuminateFinalProject/Program.cs" Line="29" Column="1" />
-      <File FileName="LuminateFinalProject/Areas/Manage/Controllers/DashboardController.cs" Line="12" Column="41" />
+      <File FileName="LuminateFinalProject/ViewModels/AccountViewModels/ProfileVM.cs" Line="16" Column="9" />
+      <File FileName="LuminateFinalProject/ViewModels/AccountViewModels/RegisterVM.cs" Line="25" Column="52" />
+      <File FileName="LuminateFinalProject/Views/Account/Profile.cshtml" Line="124" Column="101" />
+      <File FileName="LuminateFinalProject/Views/Account/Login.cshtml" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Areas/Manage/Views/Product/Update.cshtml" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Areas/Manage/Controllers/ProductController.cs" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Models/BaseEntity.cs" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Models/Category.cs" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Models/Material.cs" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Models/Product.cs" Line="36" Column="58" />
+      <File FileName="LuminateFinalProject/Models/ProductImage.cs" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Models/Setting.cs" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Models/Review.cs" Line="6" Column="35" />
+      <File FileName="LuminateFinalProject/Models/AppUser.cs" Line="14" Column="58" />
+      <File FileName="LuminateFinalProject/DataAccessLayer/AppDbContext.cs" Line="17" Column="37" />
+      <File FileName="LuminateFinalProject/Controllers/ProductController.cs" Line="56" Column="123" />
+      <File FileName="LuminateFinalProject/Views/Product/Details.cshtml" Line="148" Column="94" />
+      <File FileName="LuminateFinalProject/Views/Shared/_AddReviewPartial.cshtml" Line="3" Column="66" />
+      <File FileName="LuminateFinalProject/Program.cs" Line="43" Column="1" />
+      <File FileName="LuminateFinalProject/ViewModels/ProductReviewVMs/ProductReviewVM.cs" Line="6" Column="18" />
+      <File FileName="LuminateFinalProject/Views/_ViewImports.cshtml" Line="6" Column="56" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="LuminateFinalProject" expanded="True">
             <Node name="LuminateFinalProject" expanded="True">
-              <Node name="Areas" expanded="True">
-                <Node name="Manage" expanded="True">
-                  <Node name="Controllers" expanded="True" />
-                  <Node name="Views" expanded="True">
-                    <Node name="Shared" expanded="True" />
-                  </Node>
-                </Node>
-              </Node>
-              <Node name="Controllers" expanded="True">
-                <Node name="AccountController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
+              <Node name="DataAccessLayer" expanded="True" />
               <Node name="ViewModels" expanded="True">
-                <Node name="AccountViewModels" expanded="True" />
                 <Node name="HomeViewModels" expanded="True" />
-                <Node name="ShopViewModels" expanded="True" />
+                <Node name="ProductReviewVMs" expanded="True" />
               </Node>
               <Node name="Views" expanded="True">
                 <Node name="Account" expanded="True" />
                 <Node name="Home" expanded="True" />
-                <Node name="Product" expanded="True" />
-                <Node name="Shop" expanded="True" />
-              </Node>
-              <Node name="wwwroot" expanded="True">
-                <Node name="assets" expanded="True">
-                  <Node name="css" expanded="True" />
-                  <Node name="js" expanded="True" />
+                <Node name="Product" expanded="True">
+                  <Node name="Details.cshtml" selected="True" />
                 </Node>
+                <Node name="Shared" expanded="True" />
+                <Node name="Shop" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -55,4 +56,6 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

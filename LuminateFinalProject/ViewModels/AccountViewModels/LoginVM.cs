@@ -13,6 +13,8 @@ namespace LuminateFinalProject.ViewModels.AccountViewModels
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
+        public bool RemindMe { get; set; }
+
     }
 }
 

@@ -31,6 +31,9 @@
     <None Remove="Views\Product\" />
     <None Remove="Views\Account\" />
     <None Remove="ViewModels\AccountViewModels\" />
+    <None Remove="Areas\Manage\ViewModels\" />
+    <None Remove="Areas\Manage\ViewModels\UserViewModels\" />
+    <None Remove="ViewModels\ProductReviewVMs\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -59,6 +62,9 @@
     <Folder Include="Views\Product\" />
     <Folder Include="Views\Account\" />
     <Folder Include="ViewModels\AccountViewModels\" />
+    <Folder Include="Areas\Manage\ViewModels\" />
+    <Folder Include="Areas\Manage\ViewModels\UserViewModels\" />
+    <Folder Include="ViewModels\ProductReviewVMs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\" />

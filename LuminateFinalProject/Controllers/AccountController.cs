@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using LuminateFinalProject.Models;
 using LuminateFinalProject.ViewModels.AccountViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -21,12 +23,14 @@ namespace LuminateFinalProject.Controllers
             _roleManager = roleManager;
             _signInManager = signInManager;
         }
+        [AllowAnonymous]
         public async Task<IActionResult> Register()
         {
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterVM registerVM)
         {
             if (!ModelState.IsValid) return View(registerVM);
@@ -58,7 +62,7 @@ namespace LuminateFinalProject.Controllers
                 }
                 return View(registerVM);
             }
-            await _userManager.AddToRoleAsync(appUser, "Admin");
+            await _userManager.AddToRoleAsync(appUser, "Member");
             return RedirectToAction(nameof(Login));
         }
 
@@ -109,7 +113,16 @@ namespace LuminateFinalProject.Controllers
 
             }
 
-            Microsoft.AspNetCore.Identity.SignInResult signInResult =await _signInManager.PasswordSignInAsync(appUser,loginVM.Password,true,true);
+            Microsoft.AspNetCore.Identity.SignInResult signInResult =await _signInManager
+                .PasswordSignInAsync(appUser,loginVM.Password,loginVM.RemindMe,true);
+
+           
+            if (signInResult.IsLockedOut)
+            {
+                ModelState.AddModelError("", $"Your Account has been blocked. It will be active again after {appUser.LockoutEnd} ");
+                return View(loginVM);
+            }
+
             if (!signInResult.Succeeded)
             {
                 ModelState.AddModelError("", "Email or Password is incorrect ");
@@ -117,9 +130,115 @@ namespace LuminateFinalProject.Controllers
             }
 
 
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("profile","Account");
+        }
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction(nameof(Login));
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Member")]
+        public async Task<IActionResult> Profile()
+        {
+            AppUser appUser = await _userManager.Users
+                .FirstOrDefaultAsync(u => u.NormalizedUserName == User.Identity.Name.ToUpperInvariant());
+            
+            ProfileVM profileVM = new ProfileVM
+            {
+                Name = appUser.Name,
+                Surname = appUser.Surname,
+                Username = appUser.UserName,
+                Email = appUser.Email,
+                
+                
+            };
+            
+            //ProfileVM profileVM = new ProfileVM
+            //{
+            //    Addresses = appUser.Addresses
+
+            //};
+            return View(profileVM);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Member")]
+        public async Task<IActionResult> Profile(ProfileVM profileVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                
+                return View(profileVM);
+            }
+            AppUser appUser = await _userManager.FindByNameAsync(User.Identity.Name);
+            if (profileVM.Name !=null)
+            {
+                appUser.Name = profileVM.Name;
+            }
+            if (profileVM.Surname !=null)
+            {
+                appUser.Surname = profileVM.Surname;
+            }
+            
+            
+            if (appUser.NormalizedEmail != profileVM.Email.Trim().ToUpperInvariant())
+            {
+                appUser.Email = profileVM.Email; 
+            }
+            if (appUser.NormalizedUserName != profileVM.Username.Trim().ToUpperInvariant())
+            {
+                appUser.UserName = profileVM.Username;
+            }
+
+
+            IdentityResult identityResult  = await _userManager.UpdateAsync(appUser);
+            if (!identityResult.Succeeded)
+            {
+                foreach (IdentityError identityError in identityResult.Errors)
+                {
+
+                    ModelState.AddModelError("", identityError.Description);
+                }
+                return View(profileVM);
+            }
+            await _signInManager.SignInAsync(appUser, true);
+            if (string.IsNullOrWhiteSpace(profileVM.OldPassword))
+            {
+                if (profileVM.OldPassword !=null)
+                {
+                    //oldpassword gelmelidi httpget
+                }
+                if (!await _userManager.CheckPasswordAsync(appUser,profileVM.OldPassword))
+                {
+                    ModelState.AddModelError("OldPassword","Old Password is incorrect");
+                    return View(profileVM);
+                }
+                if (profileVM.OldPassword==profileVM.NewPassword)
+                {
+                    ModelState.AddModelError("NewPassword", "Old Password and New Password cannot be similar");
+                    return View(profileVM);
+
+                }
+                string token = await _userManager.GeneratePasswordResetTokenAsync(appUser);
+
+                identityResult = await _userManager.ResetPasswordAsync(appUser,token,profileVM.NewPassword);
+
+                if (!identityResult.Succeeded)
+                {
+                    foreach (IdentityError identityError in identityResult.Errors)
+                    {
+
+                        ModelState.AddModelError("", identityError.Description);
+                    }
+                    return View(profileVM);
+                }
+            }
+            
+            return RedirectToAction("Index","Home");
+        }
 
 
     }

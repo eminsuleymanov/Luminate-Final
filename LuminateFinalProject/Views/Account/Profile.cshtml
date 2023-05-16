@@ -1,0 +1,151 @@
+﻿@model ProfileVM
+@inject UserManager<AppUser> userManager
+@{
+    AppUser appUser = null;
+    if (User.Identity.IsAuthenticated)
+    {
+        appUser = await userManager.FindByNameAsync(User.Identity.Name);
+    }
+
+}
+
+<!-- Divider -->
+<hr>
+<!-- Divider -->
+<!-- My Account Table -->
+<section id="My-account">
+    <div class="container">
+        <div class="section-container">
+            <div class="tab-list">
+                <ul type="none" class="tab-ul">
+                    <li class="tab-li tab-li-active"><span>Dashboard</span></li>
+                    <li class="tab-li"><span>Orders</span></li>
+                    <li class="tab-li"><span>Addresses</span></li>
+                    <li class="tab-li"><span>Account Details</span></li>
+                    <li class="tab-li">
+                        <a class="logout_btn" asp-controller="account" asp-action="logout"><span>Logout</span></a>
+                    </li>
+                </ul>
+                <hr style="margin-top: 10px; margin-bottom: 30px;">
+                <div class="my-account-content my-account-content-active">
+                    <div class="dashboard-content ">
+                        <p>Hello <span>@appUser?.UserName</span> (not <span>@appUser?.UserName</span> ? <a asp-controller="account" asp-action="logout">Log out</a>)</p>
+                        <p>From your account dashboard you can view your <a href="">recent orders</a>, manage your <a href="">shipping and billing addresses</a>, and <a href=""> edit your password and account details.</a></p>
+
+                    </div>
+                </div>
+                <div class="my-account-content">
+                    <div class="orders-content ">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Order</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Total</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a class="order-no" href="#">#3203</a></td>
+                                    <td>March 18, 2021</td>
+                                    <td>Completed</td>
+                                    <td>$16,950.00 for 93 items</td>
+                                    <td id="my-account-view"><a class="order-actions" href="#">View</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">#3204</a></td>
+                                    <td>March 18, 2021</td>
+                                    <td>Completed</td>
+                                    <td>$16,950.00 for 93 items</td>
+                                    <td id="my-account-view"><a class="order-actions" href="#">View</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="my-account-content ">
+                    <div class="adresses-content ">
+                        <p>The following addresses will be used on the checkout page by default.</p>
+                        <div class="user-addresses">
+                            <div class="address">
+                                <h3>Billing address</h3>
+                                <a href="" class="">Edit</a>
+                            </div>
+                            <div>
+                                <ul>
+                                    <li><span>Name </span> <span>Surname</span></li>
+                                    <li>Company Name</li>
+                                    <li>street adress</li>
+                                    <li> additional street adress</li>
+                                    <li>town city</li>
+                                </ul>
+                            </div>
+                            <div class="address">
+                                <h3>Shipping address</h3>
+                                <a href="" class="">Edit</a>
+                            </div>
+                            <div>
+                                <ul>
+                                    <li><span>Name </span> <span>Surname</span></li>
+                                    <li>Company Name</li>
+                                    <li>street adress</li>
+                                    <li> additional street adress</li>
+                                    <li>town city</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="my-account-content">
+                    <div class="account-details-content">
+                        <div class="details">
+                            <form method="post" class="row g-3" asp-controller="account" asp-action="profile">
+                                <div asp-validation-summary="ModelOnly " class="text text-danger"></div>
+                                <div class="col-md-6">
+                                    <label asp-for="Name" class="form-label">First Name*</label>
+                                    <input asp-for="Name" class="form-control" id="inputFirstName">
+                                </div>
+                                <div class="col-md-6">
+                                    <label asp-for="Surname" class="form-label">Last Name*</label>
+                                    <input asp-for="Surname" class="form-control" id="inputLastName">
+                                </div>
+                                <div class="col-12">
+                                    <label asp-for="Username" class="form-label">UserName*</label>
+                                    <input asp-for="Username" class="form-control" id="inputUsername" >
+                                </div>
+
+                                <div class="col-12">
+                                    <label asp-for="Email" class="form-label">Email*</label>
+                                    <input asp-for="Email" class="form-control" id="inputEmail" >
+                                </div>
+                                <div class="col-12">
+                                    <label asp-for="OldPassword" class="form-label">Current Password</label>
+                                    <input asp-for="OldPassword" class="form-control" id="inputCurrentPassword">
+                                </div>
+                                <div class="col-12">
+                                    <label asp-for="NewPassword" class="form-label">New Password (leave blank to leave unchanged)</label>
+                                    <input asp-for="NewPassword" class="form-control" id="inputNewPassword">
+                                </div>
+                                <div class="col-12">
+                                    <label asp-for="ConfirmPassword" class="form-label">Confirm Password </label>
+                                    <input asp-for="ConfirmPassword" class="form-control" id="inputConfirmPassword">
+                                </div>
+                                <div>
+                                    <button type="submit" class="save-address-btn">Save Changes</button>
+                                </div>
+
+
+                            </form>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- My Account Table -->

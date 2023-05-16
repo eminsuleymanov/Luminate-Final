@@ -32,6 +32,8 @@ namespace LuminateFinalProject.Models
 
         [NotMapped]
         public IFormFile? MainFile { get; set; }
+
+        public IEnumerable<Review>? Reviews { get; set; }
     }
 }
 

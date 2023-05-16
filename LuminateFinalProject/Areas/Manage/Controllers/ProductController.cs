@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using LuminateFinalProject.DataAccessLayer;
@@ -7,12 +8,14 @@ using LuminateFinalProject.Extensions;
 using LuminateFinalProject.Helpers;
 using LuminateFinalProject.Models;
 using LuminateFinalProject.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace LuminateFinalProject.Areas.Manage.Controllers
 {
     [Area("manage")]
+    [Authorize(Roles = "SuperAdmin,Admin")]
     public class ProductController : Controller
     {
         private readonly AppDbContext _context;
@@ -23,7 +26,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
             _context = context;
             _env = env;
         }
-
+        [Authorize(Roles = "SuperAdmin,Admin")]
         public IActionResult Index(int pageIndex = 1)
         {
             IEnumerable<Product> products = _context.Products
@@ -33,6 +36,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "SuperAdmin,Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return BadRequest();
@@ -46,6 +50,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> Create()
         {
             ViewBag.Materials = await _context.Materials.Where(b => b.IsDeleted == false).ToListAsync();
@@ -56,6 +61,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> Create(Product product)
         {
             ViewBag.Materials = await _context.Materials.Where(b => b.IsDeleted == false).ToListAsync();
@@ -144,6 +150,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
 
         }
         [HttpGet]
+        [Authorize(Roles = "SuperAdmin,Admin")]
         public async Task<IActionResult> Update(int? id)
         {
             if (id == null)
@@ -168,6 +175,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SuperAdmin,Admin")]
         public async Task<IActionResult> Update(int? id, Product product)
         {
             ViewBag.Materials = await _context.Materials.Where(b => b.IsDeleted == false).ToListAsync();
@@ -250,6 +258,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "SuperAdmin,Admin")]
         public async Task<IActionResult> DeleteImageOfProduct(int? id, int? imageId)
         {
             if (id == null) return BadRequest();
@@ -271,6 +280,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return BadRequest();
@@ -283,6 +293,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> DeleteProduct(int? id)
         {
             if (id == null) return BadRequest();

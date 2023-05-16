@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using LuminateFinalProject.DataAccessLayer;
 using LuminateFinalProject.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace LuminateFinalProject.Areas.Manage.Controllers
 {
     [Area("manage")]
+    [Authorize(Roles = "SuperAdmin,Admin")]
     public class CategoryController : Controller
     {
         private readonly AppDbContext _context;
@@ -25,6 +28,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "SuperAdmin,Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return BadRequest();
@@ -35,6 +39,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "SuperAdmin")]
         public IActionResult Create()
         {
             return View();
@@ -42,6 +47,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> Create(Category category)
         {
             if (!ModelState.IsValid)
@@ -65,6 +71,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "SuperAdmin,Admin")]
         public async Task<IActionResult> Update(int? id)
         {
             if (id == null) return BadRequest();
@@ -77,6 +84,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "SuperAdmin,Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(int? id, Category category)
         {
@@ -102,6 +110,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return BadRequest();
@@ -117,6 +126,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> DeleteCategory(int? id)
         {
             if (id == null) return BadRequest();

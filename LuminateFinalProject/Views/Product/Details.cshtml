@@ -1,28 +1,33 @@
-﻿@model Product
+﻿@model ProductReviewVM
 <section id="ProductDetail">
     <div class="container">
         <div class="section-container" style="background-color: #F6F5F2;">
             <div class="product-inner">
                 <div class="product-images">
                     <div class="product-main-image" data-scale="1.6">
-                        <img id="MainImg" src="~/assets/images/product/@Model.MainImage" alt="">
+                        <img id="MainImg" src="~/assets/images/product/@Model.Product.MainImage" alt="">
                     </div>
                     <div class="product-thumb-images">
                         <ul>
-                            @foreach (ProductImage productImage in Model.ProductImages)
+                            @if (Model.Product.ProductImages != null && Model.Product.ProductImages.Count > 0)
                             {
-                                <li>
-                                    <img class="detail-image" onclick="ChangeImage(this)" src="~/assets/images/product/@productImage.Image" alt="">
-                                </li>
+                                foreach (ProductImage productImage in Model.Product.ProductImages)
+                                {
+                                    <li>
+                                        <img class="detail-image" onclick="ChangeImage(this)" src="~/assets/images/product/@productImage.Image" alt="">
+                                    </li>
+
+                                }
 
                             }
+
 
 
                         </ul>
                     </div>
                 </div>
                 <div class="product-details">
-                    <h2 class="product-title">@Model.Title</h2>
+                    <h2 class="product-title">@Model.Product.Title</h2>
                     <div class="product-rating">
                         <div class="product-star-rating">
                             <span><i class='bx bxs-star'></i></span>
@@ -35,24 +40,24 @@
 
                     </div>
                     <div class="prices">
-                        @if (Model.DiscountedPrice > 0)
+                        @if (Model.Product.DiscountedPrice > 0)
                         {
                             <del><span class="product_salePrice">$3,449.00</span></del>
-                            <span class="product_Price">$@Model.Price</span>
+                            <span class="product_Price">$@Model.Product.Price</span>
 
                         }
                         else
                         {
-                            <span class="product_Price">$@Model.DiscountedPrice</span>
+                            <span class="product_Price">$@Model.Product.Price</span>
                         }
                     </div>
                     <div class="product-short-desc">
-                        <p>@Model.Description</p>
+                        <p>@Model.Product.Description</p>
                     </div>
                     <button>Add To Cart</button>
 
                     <hr>
-                    <span class="product-category">Category:<a class="" >@Model.Category.Name</a></span>
+                    <span class="product-category">Category:<a class="" >@Model.Product.Category.Name</a></span>
                 </div>
             </div>
 
@@ -71,7 +76,7 @@
                 </ul>
                 <div class="product-tab-content product-tab-content-active">
                     <div class="description-content">
-                        <p>@Model.FullDescription</p>
+                        <p>@Model.Product.FullDescription</p>
                         <hr>
                         <img src="https://demo.agnidesigns.com/luminate/wp-content/uploads/2022/06/product-thumbnail-24-3.png" alt="">
                     </div>
@@ -110,7 +115,7 @@
                 <div class="product-tab-content">
                     <div class="reviews-content">
                         <div id="comments">
-                            <h2>1 Review For <span class="product-title">@Model.Title</span></h2>
+                            <h2>1 Review For <span class="product-title">@Model.Product.Title</span></h2>
                             <hr>
                             <ul>
                                 <li>
@@ -137,41 +142,14 @@
                             </ul>
                             <hr>
                             <div class="review-form">
-                                <h3>Add Review</h3>
-                                <form action="">
-                                    <span>Your email address will not be published. Required fields are marked *</span>
-                                    <div class="review-form-rating">
-                                        <span>Your rating *</span>
-                                        <div class="stars">
-                                            <span>
-                                                <a class="star-1" href="#">1</a>
-                                                <a class="star-2" href="#">2</a>
-                                                <a class="star-3" href="#">3</a>
-                                                <a class="star-4" href="#">4</a>
-                                                <a class="star-5" href="#">5</a>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 my-3">
-                                        <label for="exampleFormControlTextarea2" class="form-label">Your review *</label>
-                                        <textarea style="background-color: #F6F5F2; min-height: 180px;" class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
-                                    </div>
-                                    <div class="col-12 my-3">
-                                        <label for="inputFirstName" class="form-label"> Name*</label>
-                                        <input style="background-color: #F6F5F2;" type="text" class="form-control" id="inputFirstName">
-                                    </div>
-                                    <div class="col-12 my-3">
-                                        <label for="inputEmail" class="form-label">Email*</label>
-                                        <input type="email" style="background-color: #F6F5F2;" class="form-control" id="inputEmail" placeholder="emin14@mail.ru">
-                                    </div>
-                                    <div class="col-12 my-2 align-items-center d-flex">
-                                        <input type="checkbox" name="" id="">
-                                        <label for="">Save my name, email, and website in this browser for the next time I comment.</label>
-                                    </div>
-                                    <div>
-                                        <button type="submit" class="review-submit-btn">Submit</button>
-                                    </div>
-                                </form>
+                                @if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+                                {
+                                    <h3>Add Review</h3>
+                                    @await Html.PartialAsync("_AddReviewPartial",Model.Review)
+
+
+                                }
+
                             </div>
 
                         </div>
