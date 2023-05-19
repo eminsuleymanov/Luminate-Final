@@ -36,7 +36,7 @@
                             <span><i class='bx bxs-star'></i></span>
                             <span><i class='bx bx-star'></i></span>
                         </div>
-                        <a href="">(<span>1</span> customer review)</a>
+                        <a href="#comments">(<span>@Model.Product.Reviews.Count()</span> customer review)</a>
 
                     </div>
                     <div class="prices">
@@ -54,7 +54,7 @@
                     <div class="product-short-desc">
                         <p>@Model.Product.Description</p>
                     </div>
-                    <button>Add To Cart</button>
+                    <button data-id="@Model.Product.Id" >Add To Cart</button>
 
                     <hr>
                     <span class="product-category">Category:<a class="" >@Model.Product.Category.Name</a></span>
@@ -72,7 +72,7 @@
                 <ul class="product-tab-ul">
                     <li class="product-tab-li product-tab-li-active">Description</li>
                     <li class="product-tab-li">Additional information</li>
-                    <li class="product-tab-li"> Reviews <span>(1)</span></li>
+                    <li class="product-tab-li"> Reviews <span>(@(Model.Product.Reviews.Count()))</span></li>
                 </ul>
                 <div class="product-tab-content product-tab-content-active">
                     <div class="description-content">
@@ -115,28 +115,37 @@
                 <div class="product-tab-content">
                     <div class="reviews-content">
                         <div id="comments">
-                            <h2>1 Review For <span class="product-title">@Model.Product.Title</span></h2>
+                            <h2>(@(Model.Product.Reviews.Count())) Review For <span class="product-title">@Model.Product.Title</span></h2>
                             <hr>
                             <ul>
                                 <li>
+                                    @if (Model.Product.Reviews != null && Model.Product.Reviews.Count() > 0)
+                                    {
+                                        foreach (Review review in Model.Product.Reviews)
+                                        {
+                                            <div class="comment-box">
+                                                <img src="https://secure.gravatar.com/avatar/fbf2b9cfc0a472389f3620e471bdf0e9?s=120&d=mm&r=g" alt="">
+                                                <div class="comment-text">
+                                                    <div class="review-rating">
+                                                        @for (int i = 1; i <= 5; i++)
+                                                        {
+                                                            <span><i class='bx @(i<= review.Star ? "bxs-star":"bx-star")'></i></span>
 
-                                    <div class="comment-box">
-                                        <img src="https://secure.gravatar.com/avatar/fbf2b9cfc0a472389f3620e471bdf0e9?s=120&d=mm&r=g" alt="">
-                                        <div class="comment-text">
-                                            <div class="review-rating">
-                                                <span><i class='bx bxs-star'></i></span>
-                                                <span><i class='bx bxs-star'></i></span>
-                                                <span><i class='bx bxs-star'></i></span>
-                                                <span><i class='bx bxs-star'></i></span>
-                                                <span><i class='bx bx-star'></i></span>
+                                                        }
 
+                                                    </div>
+                                                    <p><strong class="review-username">@review.Name</strong>- <span>@review.CreatedAt</span></p>
+                                                    <div class="comment-desc">
+                                                        <p>@review.Description</p>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <p><strong class="review-username">John Doe</strong>- <span>July 3, 2022</span></p>
-                                            <div class="comment-desc">
-                                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, optio ipsum? Eum fugit quod, quibusdam saepe accusantium nisi, eos facere quidem est ab et assumenda neque numquam quis? Hic, explicabo.</p>
-                                            </div>
-                                        </div>
-                                    </div>
+
+                                        }
+
+
+                                    }
+
 
                                 </li>
                             </ul>

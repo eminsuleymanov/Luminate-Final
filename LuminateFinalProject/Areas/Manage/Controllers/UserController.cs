@@ -18,47 +18,78 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly AppDbContext _context;
-        public UserController(UserManager<AppUser> userManager, AppDbContext context)
+        private readonly RoleManager<IdentityRole> _roleManager;
+
+        public UserController(UserManager<AppUser> userManager, AppDbContext context, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _context = context;
+            _roleManager = roleManager;
         }
 
-        //public async Task<IActionResult> Index()
-        //{
-        //    //Not Working
-        //    //List<UserVM> users = await _userManager.Users
-        //    //    .Where(u=>u.UserName != User.Identity.Name)
-        //    //    .Select(x=> new UserVM {
-        //    //        Id = x.Id,
-        //    //        Email = x.Email,
-        //    //        Name = x.Name,
-        //    //        Surname = x.Surname,
-        //    //        Username = x.UserName
-        //    //    })
-        //    //    .ToListAsync();
-
-        //    //foreach (var item in users)
-        //    //{
-        //    //    string roleId = _context.UserRoles.FirstOrDefaultAsync(u => u.UserId == item.Id);
-        //    //}
-        //    //return View();
-        //}
-
-        //[HttpGet]
-        //public async Task<IActionResult> ChangeRole(string? id)
-        //{
-        //    if (string.IsNullOrWhiteSpace(id)) return BadRequest();
-        //    AppUser appUser = await _userManager.FindByIdAsync(id);
-        //    if (appUser == null) return NotFound();
-        //    UserChangeRole userChangeRole = new UserChangeRole
-        //    {
-        //        UserId = appUser.Id,
-        //        RoleId = await _userManager.GetRolesAsync()
-        //    };
 
 
-        //}
+        public async Task<IActionResult> Index()
+        {
+            //Not Working
+            List<UserVM> users = await _userManager.Users
+                .Where(u => u.UserName != User.Identity.Name)
+                .Select(x => new UserVM
+                {
+                    Id = x.Id,
+                    Email = x.Email,
+                    Name = x.Name,
+                    Surname = x.Surname,
+                    Username = x.UserName
+                })
+                .ToListAsync();
+
+            foreach (var item in users)
+            {
+                string roleId = _context.UserRoles.FirstOrDefault(u => u.UserId == item.Id).RoleId;
+                string roleName = _context.Roles.FirstOrDefault(r => r.Id == roleId).Name;
+                item.RoleName = roleName;
+            }
+            return View(users);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ChangeRole(string? userId)
+        {
+            if (string.IsNullOrWhiteSpace(userId)) return BadRequest();
+            AppUser appUser = await _userManager.FindByIdAsync(userId);
+            if (appUser == null) return NotFound();
+            string roleId = _context.UserRoles.FirstOrDefault(u => u.UserId == userId).RoleId;
+
+            UserChangeRole userChangeRole = new UserChangeRole
+            {
+                UserId = userId,
+                RoleId = roleId
+            };
+            ViewBag.Role = await _roleManager.Roles.Where(r => r.Name != "SuperAdmin").ToListAsync();
+
+            return View(userChangeRole);
+
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> ChangeRole(UserChangeRole userChangeRole)
+        {
+            ViewBag.Role = await _roleManager.Roles.Where(r => r.Name != "SuperAdmin").ToListAsync();
+            if (!ModelState.IsValid) return View(userChangeRole);
+            if (string.IsNullOrWhiteSpace(userChangeRole.UserId)) return BadRequest();
+            AppUser appUser = await _userManager.FindByIdAsync(userChangeRole.UserId);
+            if (appUser == null) return NotFound();
+
+            string roleId = _context.UserRoles.FirstOrDefault(u => u.UserId == userChangeRole.UserId).RoleId;
+            string roleName = _context.Roles.FirstOrDefault(r => r.Id == roleId).Name;
+            string newRolename = _context.Roles.FirstOrDefault(r => r.Name != "SuperAdmin" && r.Id == userChangeRole.RoleId).Name;
+            await _userManager.RemoveFromRoleAsync(appUser,roleName);
+            await _userManager.AddToRoleAsync(appUser, newRolename);
+
+            return RedirectToAction(nameof(Index));
+             
+        }
     }
 }
 

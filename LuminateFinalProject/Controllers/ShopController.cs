@@ -23,38 +23,54 @@ namespace LuminateFinalProject.Controllers
         {
             IEnumerable<Product> products = _context.Products
                 .Where(p => p.IsDeleted == false);
+
+            ViewBag.totalPage = (int)Math.Ceiling((decimal)products.Count()/6);
+
+            products = products.Skip((pageIndex - 1) * 6).Take(6);
+
+            ViewBag.pageIndex = pageIndex;
+
+
             ViewBag.categoryId = categoryId;
             ShopVM shopVM = new ShopVM
             {
-                Products = PagenatedList<Product>.Create(products, pageIndex, 6),
+                Products = products,
                 Materials = await _context.Materials.Where(m=>m.IsDeleted==false).ToListAsync(),
                 Categories = await _context.Categories.Where(c=>c.IsDeleted==false).ToListAsync()
             };
             return View(shopVM);
         }
 
-        public async Task<IActionResult> ShopFilters(int? categoryId,int? materialId,int pageIndex = 1)
+        public async Task<IActionResult> ShopFilters(int? categoryId,int? materialId,double? minPrice,double? maxPrice,int pageIndex = 1)
         {
             IEnumerable<Product> products =  _context.Products
                 .Where(p => p.IsDeleted == false);
             if (categoryId !=null)
             {
-                products = products.Where(p => p.CategoryId == (int)categoryId).ToList();
+                products = products.Where(p => p.CategoryId == categoryId);
                 ViewBag.categoryId = categoryId;
-
             }
-            //ViewBag.totalPages =(int)Math.Ceiling((decimal)products.Count() / 6) ;
-            products = products.Skip((pageIndex - 1) * 6).Take(6);
-            //if (materialId != null)
-            //{
-            //    products = products.Where(p => p.MaterialId == materialId).ToList();
-            //    ViewBag.materialId = materialId;
+            if (materialId !=null)
+            {
+                products = products.Where(p => p.MaterialId == materialId);
+                ViewBag.materialId = materialId;
+            }
+            if (minPrice >=0 && maxPrice>0)
+            {
+                products = products.Where(p => p.IsDeleted == false && (p.DiscountedPrice > 0 ?
+                    p.DiscountedPrice >= minPrice && p.DiscountedPrice <= (minPrice == 0 ? 8500 : maxPrice) :
+                    p.Price >= minPrice && p.Price <= (maxPrice == 0 ? 8500 : maxPrice)));
+                ViewBag.minPrice = minPrice;
+                ViewBag.maxPrice = maxPrice;
+            }
 
-            //}
+            ViewBag.totalPage = (int)Math.Ceiling((decimal)products.Count() / 6);
+            products = products.Skip((pageIndex - 1) * 6).Take(6);
             ViewBag.pageIndex = pageIndex;
+
             ShopVM shopVM = new ShopVM
             {
-                Products = PagenatedList<Product>.Create(products, pageIndex, 6),
+                Products = products,
                 Materials = await _context.Materials.Where(m => m.IsDeleted == false).ToListAsync(),
                 Categories = await _context.Categories.Where(c => c.IsDeleted == false).ToListAsync()
             };

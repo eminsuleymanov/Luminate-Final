@@ -413,7 +413,8 @@ header  .header-all .leftpart .searchBar i{
     border: 1.5px solid #242A2E;
     color: #242A2E;
     display: inline-block;
-    border-radius: 32px;   
+    border-radius: 32px;
+    cursor:pointer;
 }
 #HandPicked_Lights .handLights .handLight .cart_btn .addToCart::after
 {
@@ -819,6 +820,7 @@ input[type=checkbox]:checked::before {
 #Shop .filter>ul>li>a{
     font-weight: 100;
     padding-bottom: 0;
+    cursor:pointer;
 }
 #Shop .filter>ul>li>span{
     margin-left: 10px;
@@ -942,6 +944,7 @@ input[type=checkbox]:checked::before {
     border: 1px solid ;
     padding: 10px;
     border-radius: 32px;
+    cursor: pointer;
 }
 .pagination .pagination-box li a{
     color: #242A2E;
@@ -1595,6 +1598,7 @@ input[type=checkbox]:checked::before {
 #ProductInfo .reviews-content .comment-box{
     display: flex;
     width: 100%;
+    padding: 5px 0;
 }
 #ProductInfo .reviews-content .comment-box img{
     max-width: 45px;
@@ -1614,11 +1618,11 @@ input[type=checkbox]:checked::before {
 #ProductInfo .reviews-content .comment-box .comment-text .comment-desc{
     font-weight: 100;
 }
-#ProductInfo .stars span{
+/*#ProductInfo .stars span{
     display: flex;
     gap: 10px;
-}
-#ProductInfo .stars span a{
+}*/
+/*#ProductInfo .stars span a{
     color: #242A2E;
     background-image: url(../images/icons/star-outlined.png);
     background-size: 16px;
@@ -1632,10 +1636,34 @@ input[type=checkbox]:checked::before {
     background-position: 30px 8px;
     line-height: 1.2;
     opacity: 0.6;
-}
-#ProductInfo .review-form .review-form-rating .stars span a:hover{
+}*/
+/*#ProductInfo .review-form .review-form-rating .stars span a:hover{
     opacity: 1;
+}*/
+#ProductInfo .star-rating {
+    direction: rtl;
+    display: inline-block;
+    padding: 15px;
+    cursor: default;
 }
+
+    #ProductInfo .star-rating input[type=radio] {
+        display: none;
+    }
+
+    #ProductInfo .star-rating label {
+        color: #bbb;
+        font-size: 2rem;
+        padding: 0;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+    }
+
+        #ProductInfo .star-rating label:hover,
+        #ProductInfo .star-rating label:hover ~ label,
+        #ProductInfo .star-rating input[type=radio]:checked ~ label {
+            color: #f2b600;
+        }
 #ProductInfo .review-form h3{
     font-weight: 600;
     margin: 45px 0 30px;

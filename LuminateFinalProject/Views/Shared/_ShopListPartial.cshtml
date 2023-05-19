@@ -11,9 +11,19 @@
                     <ul>
                         @foreach (Category category in Model.Categories)
                         {
+                                
                             <li>
-                                <a class="categoryFilter" data-categoryId="@category.Id">@category.Name</a>
-                                <span>@category.Products?.Count()</span>
+                                <a class="categoryFilter" data-minPrice="@ViewBag.minPrice" data-maxPrice="@ViewBag.maxPrice" data-materialId="@ViewBag.materialId" data-categoryId="@category.Id" data-pageIndex="@ViewBag.pageIndex">@category.Name</a>
+                                @if (category.Products?.Count() > 0 && category.Products?.Count() != null)
+                                {
+                                    <span>@category.Products?.Count()</span>
+                                }
+                                else
+                                {
+                                    <span>0</span>
+                                }
+
+
                             </li>
 
                         }
@@ -29,7 +39,7 @@
                         {
                             <li>
                                 <input type="checkbox" name="" id="">
-                                <a asp-route-materialId="@material.Id">@material.Name</a>
+                                <a class="materialSelector" data-minPrice="@ViewBag.minPrice" data-maxPrice="@ViewBag.maxPrice" data-materialId="@material.Id" data-categoryId="@ViewBag.categoryId" data-pageIndex="@ViewBag.pageIndex">@material.Name</a>
                                 <span>@material.Products?.Count()</span>
                             </li>
 
@@ -43,7 +53,7 @@
                     <div id="slider-range"></div>
                     <div class="price-amount-range">
                         Price:   $<span id="min-value"></span> - $<span id="max-value"></span>
-                        <button>Go</button>
+                        <button data-materialId="@ViewBag.materialId" data-categoryId="@ViewBag.categoryId" data-pageIndex="@ViewBag.pageIndex"  id="filterBtn">Go</button>
                     </div>
 
                 </div>
@@ -88,13 +98,13 @@
                                 <div class="prices">
                                     @if (product.DiscountedPrice > 0)
                                     {
-                                        <del><span class="product_salePrice">$3,449.00</span></del>
-                                        <span class="product_Price">$3,200.00</span>
+                                        <del><span class="product_salePrice">$@product.Price</span></del>
+                                        <span class="product_Price">$@product.DiscountedPrice</span>
 
                                     }
                                     else
                                     {
-                                        <span class="product_Price">$3,200.00</span>
+                                        <span class="product_Price">$@product.Price</span>
                                     }
                                 </div>
                                 <div class="rating">
@@ -121,21 +131,21 @@
                 <!-- Pagination -->
                 <div class="pagination">
                     <ul class="pagination-box">
-                        @if (Model.Products.PageIndex > 1)
+                        @if (ViewBag.pageIndex> 1)
                         {
-                            <li><a class="previous pageIn" data-categoryId="@ViewBag.categoryId" data-pageIndex="@(Model.Products.PageIndex-1)" asp-route-pageIndex="@(Model.Products.PageIndex-1)"><i class='bx bx-left-arrow-alt'></i></a></li>
+                            <li><a class="previous pageIn" data-minPrice="@ViewBag.minPrice" data-maxPrice="@ViewBag.maxPrice" data-materialId="@ViewBag.materialId" data-categoryId="@ViewBag.categoryId" data-pageIndex="@(ViewBag.pageIndex-1)"><i class='bx bx-left-arrow-alt'></i></a></li>
                         }
-                        @for (int i = Model.Products.StartPage; i <= Model.Products.EndPage; i++)
+                        @for (int i = 1; i <= ViewBag.totalPage; i++)
                         {
-                            <li class="@(Model.Products.PageIndex == i ? "active":"")">
-                                <a class="pageIn " data-categoryId="@ViewBag.categoryId" asp-route-categoryId="@ViewBag.categoryId" data-pageIndex="@i" asp-route-pageIndex="@i">@i</a>
+                            <li class="@(ViewBag.pageIndex == i ? "active":"")">
+                                <a class="pageIn " data-minPrice="@ViewBag.minPrice" data-maxPrice="@ViewBag.maxPrice" data-materialId="@ViewBag.materialId" data-categoryId="@ViewBag.categoryId"  data-pageIndex="@i" >@i</a>
                             </li>
                         }
 
-                        @if (Model.Products.PageIndex < Model.Products.TotalPage)
+                        @if (ViewBag.pageIndex < ViewBag.totalPage)
                         {
                             <li>
-                                <a class="next pageIn" data-categoryId="@ViewBag.categoryId" data-pageIndex="@(Model.Products.PageIndex+1)" asp-route-pageIndex="@(Model.Products.PageIndex+1)">
+                                <a class="next pageIn" data-minPrice="@ViewBag.minPrice" data-maxPrice="@ViewBag.maxPrice" data-materialId="@ViewBag.materialId" data-categoryId="@ViewBag.categoryId" data-pageIndex="@(ViewBag.pageIndex+1)">
                                     <i class='bx bx-right-arrow-alt'></i>
                                 </a>
                             </li>

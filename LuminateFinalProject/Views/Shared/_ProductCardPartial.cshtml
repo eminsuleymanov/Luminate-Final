@@ -19,13 +19,13 @@
         <div class="prices">
             @if (product.DiscountedPrice > 0)
             {
-                <del><span class="product_salePrice">$3,449.00</span></del>
-                <span class="product_Price">$3,200.00</span>
+                <del><span class="product_salePrice">$@product.Price</span></del>
+                <span class="product_Price">$@product.DiscountedPrice</span>
 
             }
             else
             {
-                <span class="product_Price">$3,200.00</span>
+                <span class="product_Price">$@product.Price</span>
             }
 
         </div>
@@ -37,7 +37,7 @@
             <span><i class='bx bx-star'></i></span>
         </div>
         <div class="cart_btn">
-            <a href="" class="addToCart">Add To Cart</a>
+            <a  data-id="@product.Id" class="addToCart">Add To Cart</a>
         </div>
 
     </div>

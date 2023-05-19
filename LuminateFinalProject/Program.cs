@@ -1,5 +1,7 @@
 ﻿using LuminateFinalProject.DataAccessLayer;
+using LuminateFinalProject.Interfaces;
 using LuminateFinalProject.Models;
+using LuminateFinalProject.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +26,7 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
     options.Lockout.MaxFailedAccessAttempts = 3;
 
 }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+builder.Services.AddScoped<ILayoutService, LayoutService>();
 
 var app = builder.Build();
 

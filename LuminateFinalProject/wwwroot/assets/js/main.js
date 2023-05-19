@@ -126,7 +126,8 @@ minusQtyBtn();
 $(document).on('click', '.categoryFilter', function () {
     let categoryId = $(this).attr('data-categoryId');
     let pageIndex = $(".pageIn").attr('data-pageIndex');
-    fetch("/shop/shopfilters?categoryId=" + categoryId + "&pageIndex=" + pageIndex)
+    let materialId = $(this).attr('data-materialId');
+    fetch("/shop/shopfilters?categoryId=" + categoryId + "&materialId=" + materialId + "&pageIndex=" + pageIndex )
         .then(res => {
             return res.text();
         })
@@ -139,7 +140,8 @@ $(document).on('click', '.categoryFilter', function () {
 $(document).on('click', '.pageIn', function () {
     let categoryId = $(this).attr('data-categoryId');
     let pageIndex = $(this).attr('data-pageIndex');
-    fetch("/shop/shopfilters?categoryId=" + categoryId + "&pageIndex=" + pageIndex)
+    let materialId = $(this).attr('data-materialId');
+    fetch("/shop/shopfilters?categoryId=" + categoryId + "&materialId=" + materialId + "&pageIndex=" + pageIndex)
         .then(res => {
             return res.text();
         })
@@ -148,3 +150,98 @@ $(document).on('click', '.pageIn', function () {
         });
 });
 
+$(document).on('click', '.materialSelector', function () {
+    let categoryId = $(this).attr('data-categoryId');
+    let pageIndex = $(".pageIn").attr('data-pageIndex');
+    let materialId = $(this).attr('data-materialId');
+    fetch("/shop/shopfilters?categoryId=" + categoryId + "&materialId=" + materialId + "&pageIndex=" + pageIndex)
+        .then(res => {
+            return res.text();
+        })
+        .then(data => {
+
+            $('#Shop').html(data);
+        });
+});
+
+$(document).on('click', '#filterBtn', function () {
+    let categoryId = $(this).attr('data-categoryId');
+    let pageIndex = $(".pageIn").attr('data-pageIndex');
+    let materialId = $(this).attr('data-materialId');
+    let minPrice = $("#min-value").text();
+    let maxPrice = $("#max-value").text();
+    console.log(minPrice);
+    console.log(maxPrice);
+    fetch("/shop/shopfilters?categoryId=" + categoryId + "&materialId=" + materialId + "&minPrice=" + minPrice + "&maxPrice=" + maxPrice + "&pageIndex=" + pageIndex)
+        .then(res => {
+            return res.text();
+        })
+        .then(data => {
+
+            $('#Shop').html(data);
+        });
+});
+
+
+$(".minicart-badge").html($(".cartcount").text());
+$(".addToCart").click(function (e) {
+    e.preventDefault();
+    let productId = $(this).data('id');
+    fetch("basket/AddToBasket?id=" + productId)
+        .then(res => {
+            return res.text();
+
+        })
+        .then(data => {
+            $("#Cart").html(data);
+
+            $(".minicart-badge").html($(".cartcount").text())
+
+        })
+
+
+})
+//Delete from Basket
+$(document).on('click', ".remove_btn", function (e) {
+    e.preventDefault();
+    let productId = $(this).data('id');
+    fetch("basket/DeleteFromBasket?id=" + productId)
+        .then(res => {
+            return res.text();
+        })
+        .then(data => {
+            $("#Cart").html(data);
+        
+            $(".minicart-badge").html($(".cartcount").text())
+            fetch("basket/RefreshIndex")
+                .then(res1 => {
+                    return res1.text();
+                })
+                .then(data1 => {
+                    $(".productTable").html(data1);
+                })
+
+        })
+
+});
+
+//Delete from Cart
+$(document).on('click', ".cartdelete", function (e) {
+    e.preventDefault();
+    let productId = $(this).data('id');
+   
+    fetch("basket/DeleteFromCart?id=" + productId)
+        .then(res => res.text())
+        .then(data => {
+            $(".productTable").html(data);
+            $(".minicart-badge").html($(".cartcount").text())
+
+            fetch('basket/RefreshBasket')
+                .then(res1 => res1.text())
+            .then(data1 => {
+                $("#Cart").html(data1);
+                
+            })
+    })
+
+})

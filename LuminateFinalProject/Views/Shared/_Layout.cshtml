@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@inject ILayoutService layoutservice
+
+@{
+    //IDictionary<string, string> settings = await layoutservice.GetSettings();
+    IEnumerable<BasketVM> basketVMs = await layoutservice.GetBaskets();
+   
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,6 +15,10 @@
     <title>Luminate</title>
     <link rel="stylesheet" href="~/assets/css/bootstrap.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="~/assets/css/style.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
@@ -242,118 +254,7 @@
         </button>
 
         <div id="Cart">
-            <h2>Your Cart (2 Items)</h2>
-            <div class="cart-content">
-                <div class="cart-table">
-                    <form action="">
-                        <table style="width: 100%;">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="product-remove"><a href="" class="remove_btn"><i class='bx bx-x-circle'></i></a></td>
-                                    <td class="product-image">
-                                        <a href="">
-                                            <img src="https://demo.agnidesigns.com/luminate/wp-content/uploads/2022/06/product-thumbnail-12-420x560.png" alt="">
-                                        </a>
-                                    </td>
-                                    <td class="product-name">
-                                        <a href="">Heavy Desk Light</a>
-                                    </td>
-                                    <td class="product_Price">
-                                        <span>$350.00</span>
-                                    </td>
-                                    <td class="product-qty">
-                                        <div class="qty-input">
-                                            <span class="minus-qty"></span>
-                                            <input class="product-cart-count" type="text" value="1" name="" id="">
-                                            <span class="plus-qty"></span>
-                                        </div>
-                                    </td>
-                                    <td class="product-subtotal">
-                                        <span>$350.00</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="product-remove"><a href="" class="remove_btn"><i class='bx bx-x-circle'></i></a></td>
-                                    <td class="product-image">
-                                        <a href="">
-                                            <img src="https://demo.agnidesigns.com/luminate/wp-content/uploads/2022/06/product-thumbnail-24-420x560.png" alt="">
-                                        </a>
-                                    </td>
-                                    <td class="product-name">
-                                        <a href="">Nans PF:80 Outdoor Ceiling Lamp</a>
-                                    </td>
-                                    <td class="product_Price">
-                                        <span>$4900.00</span>
-                                    </td>
-                                    <td class="product-qty">
-                                        <div class="qty-input">
-                                            <span class="minus-qty"></span>
-                                            <input class="product-cart-count" type="text" value="1" name="" id="">
-                                            <span class="plus-qty"></span>
-                                        </div>
-                                    </td>
-                                    <td class="product-subtotal">
-                                        <span>$4900.00</span>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td class="product-remove"><a href="" class="remove_btn"><i class='bx bx-x-circle'></i></a></td>
-                                    <td class="product-image">
-                                        <a href="">
-                                            <img src="https://demo.agnidesigns.com/luminate/wp-content/uploads/2022/06/product-thumbnail-24-420x560.png" alt="">
-                                        </a>
-                                    </td>
-                                    <td class="product-name">
-                                        <a href="">Nans PF:80 Outdoor Ceiling Lamp</a>
-                                    </td>
-                                    <td class="product_Price">
-                                        <span>$4900.00</span>
-                                    </td>
-                                    <td class="product-qty">
-                                        <div class="qty-input">
-                                            <span class="minus-qty"></span>
-                                            <input class="product-cart-count" type="text" value="1" name="" id="">
-                                            <span class="plus-qty"></span>
-                                        </div>
-                                    </td>
-                                    <td class="product-subtotal">
-                                        <span>$4900.00</span>
-                                    </td>
-
-                                </tr>
-
-                            </tbody>
-                        </table>
-                    </form>
-
-                </div>
-                <div class="cart-totals">
-
-                    <div class="sub-content">
-                        <h5>SubTotal:</h5>
-                        <span class="subtotal">$5,249.00</span>
-                    </div>
-                    <hr>
-
-                    <div class="checkout">
-                        <a href="checkout.html" class="checkout_btn">Go To Checkout</a>
-                    </div>
-                    <a class="viewCart" href="cart.html"><span>View My Cart</span></a>
-
-
-                </div>
-            </div>
+            @await Html.PartialAsync("_BasketPartial", basketVMs)
         </div>
     </section>
 

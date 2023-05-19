@@ -24,7 +24,7 @@ namespace LuminateFinalProject.Controllers
             _signInManager = signInManager;
         }
         [AllowAnonymous]
-        public async Task<IActionResult> Register()
+        public IActionResult Register()
         {
             return View();
         }
@@ -128,7 +128,10 @@ namespace LuminateFinalProject.Controllers
                 ModelState.AddModelError("", "Email or Password is incorrect ");
                 return View(loginVM);
             }
-
+            if (await _userManager.IsInRoleAsync(appUser, "SuperAdmin"))
+            {
+                return RedirectToAction("index", "dashboard", new { area = "manage" });
+            }
 
             return RedirectToAction("profile","Account");
         }
@@ -152,6 +155,7 @@ namespace LuminateFinalProject.Controllers
                 Surname = appUser.Surname,
                 Username = appUser.UserName,
                 Email = appUser.Email,
+                
                 
                 
             };
@@ -205,12 +209,8 @@ namespace LuminateFinalProject.Controllers
                 return View(profileVM);
             }
             await _signInManager.SignInAsync(appUser, true);
-            if (string.IsNullOrWhiteSpace(profileVM.OldPassword))
+            if (!string.IsNullOrWhiteSpace(profileVM.OldPassword))
             {
-                if (profileVM.OldPassword !=null)
-                {
-                    //oldpassword gelmelidi httpget
-                }
                 if (!await _userManager.CheckPasswordAsync(appUser,profileVM.OldPassword))
                 {
                     ModelState.AddModelError("OldPassword","Old Password is incorrect");
@@ -235,6 +235,8 @@ namespace LuminateFinalProject.Controllers
                     }
                     return View(profileVM);
                 }
+                await _signInManager.SignOutAsync();
+                return RedirectToAction(nameof(Login));
             }
             
             return RedirectToAction("Index","Home");
