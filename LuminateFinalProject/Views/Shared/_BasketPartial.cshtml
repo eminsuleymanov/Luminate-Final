@@ -14,11 +14,11 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="basketContainer">
                     @foreach (BasketVM basketVM in Model)
                     {
                         <tr>
-                            <td class="product-remove"><a data-id="@basketVM.Id" class="remove_btn"><i class='bx bx-x-circle'></i></a></td>
+                            <td class="product-remove"><a data-id="@basketVM.Id" asp-controller="basket" asp-action="deleteFromBasket" asp-route-id="@basketVM.Id" class="remove_btn"><i class='bx bx-x-circle'></i></a></td>
                             <td class="product-image">
                                 <a asp-controller="product" asp-action="details" asp-route-id="@basketVM.Id">
                                     <img src="~/assets/images/product/@basketVM.Image" alt="">
@@ -27,18 +27,36 @@
                             <td class="product-name">
                                 <a asp-controller="product" asp-action="details" asp-route-id="@basketVM.Id">@basketVM.Title</a>
                             </td>
-                            <td class="product_Price">
-                                <span class="product_Price">$@basketVM.Price</span>
+                            <td >
+                                @if (basketVM.DiscountedPrice > 0)
+                                {
+
+                                    <span class="product_Price" style="color:green;">$@basketVM.DiscountedPrice</span>
+
+                                }
+                                else
+                                {
+                                    <span class="product_Price">$@basketVM.Price</span>
+                                }
                             </td>
                             <td class="product-qty">
                                 <div class="qty-input">
-                                    <span class="minus-qty"></span>
+                                    <span class="minus-qty" data-id="@basketVM.Id"></span>
                                     <input class="product-cart-count" type="text" value="@basketVM.Count" name="" id="">
-                                    <span class="plus-qty"></span>
+                                    <span class="plus-qty" data-id="@basketVM.Id"></span>
                                 </div>
                             </td>
                             <td class="product-subtotal">
-                                <span>$@(basketVM.Count*basketVM.Price)</span>
+                                @if (basketVM.DiscountedPrice > 0)
+                                {
+                                    <span>$@(basketVM.Count*basketVM.DiscountedPrice)</span>
+
+                                }
+                                else
+                                {
+                                    <span>$@(basketVM.Count*basketVM.Price)</span>
+                                }
+
                             </td>
                         </tr>
 
@@ -60,7 +78,7 @@
         <hr>
 
         <div class="checkout">
-            <a href="checkout.html" class="checkout_btn">Go To Checkout</a>
+            <a asp-controller="shop" asp-action="checkout" class="checkout_btn">Go To Checkout</a>
         </div>
         <a class="viewCart" asp-controller="basket" asp-action="index"><span>View My Cart</span></a>
 

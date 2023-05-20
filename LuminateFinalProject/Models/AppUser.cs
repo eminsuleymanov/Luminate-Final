@@ -12,6 +12,9 @@ namespace LuminateFinalProject.Models
         [StringLength(100)]
         public string? Surname { get; set; }
         public IEnumerable<Review>? Reviews { get; set; }
+        public IEnumerable<Address>? Addresses { get; set; }
+        public IEnumerable<Order>? Orders { get; set; }
+        public List<Basket>? Baskets { get; set; }
 
     }
 }

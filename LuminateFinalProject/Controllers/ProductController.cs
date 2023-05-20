@@ -104,9 +104,13 @@ namespace LuminateFinalProject.Controllers
                 HttpContext.Response.Cookies.Append("basket", basket);
                 foreach (BasketVM basketVM in basketVMs)
                 {
-                    basketVM.Title = _context.Products.FirstOrDefault(p => p.Id == basketVM.Id).Title;
-                    basketVM.Image = _context.Products.FirstOrDefault(p => p.Id == basketVM.Id).MainImage;
-                    basketVM.Price = _context.Products.FirstOrDefault(p => p.Id == basketVM.Id).Price;
+                    Product product =  _context.Products
+                    .FirstOrDefault(p => p.Id == basketVM.Id && p.IsDeleted == false);
+
+                    basketVM.Title = product.Title;
+                    basketVM.Image = product.MainImage;
+                    basketVM.Price =  product.Price;
+                    basketVM.DiscountedPrice = product.DiscountedPrice;
                 }
                 return PartialView("_BasketProductTablePartial", basketVMs);
             }
@@ -115,22 +119,33 @@ namespace LuminateFinalProject.Controllers
                 return BadRequest();
             }
         }
-
-        public IActionResult RefreshCartProductCount()
+        public IActionResult ChangeCartProductCount(int? id, int count)
         {
+            if (id == null)
+            {
+                return BadRequest();
+            }
+            if (!_context.Products.Any(p => p.Id == id))
+            {
+                return NotFound();
+            }
             string basket = HttpContext.Request.Cookies["basket"];
             List<BasketVM> basketVMs = null;
             if (basket != null)
             {
                 basketVMs = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
-
+                basketVMs.Find(p => p.Id == id).Count = count;
                 basket = JsonConvert.SerializeObject(basketVMs);
                 HttpContext.Response.Cookies.Append("basket", basket);
                 foreach (BasketVM basketVM in basketVMs)
                 {
-                    basketVM.Title = _context.Products.FirstOrDefault(p => p.Id == basketVM.Id).Title;
-                    basketVM.Image = _context.Products.FirstOrDefault(p => p.Id == basketVM.Id).MainImage;
-                    basketVM.Price = _context.Products.FirstOrDefault(p => p.Id == basketVM.Id).Price;
+                    Product product = _context.Products
+                   .FirstOrDefault(p => p.Id == basketVM.Id && p.IsDeleted == false);
+
+                    basketVM.Title = product.Title;
+                    basketVM.Image = product.MainImage;
+                    basketVM.Price = product.Price;
+                    basketVM.DiscountedPrice = product.DiscountedPrice;
                 }
                 return PartialView("_BasketPartial", basketVMs);
             }
@@ -139,6 +154,35 @@ namespace LuminateFinalProject.Controllers
                 return BadRequest();
             }
         }
+
+        //public IActionResult RefreshCartProductCount()
+        //{
+            
+        //    string basket = HttpContext.Request.Cookies["basket"];
+        //    List<BasketVM> basketVMs = null;
+        //    if (basket != null)
+        //    {
+        //        basketVMs = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
+        //        //basketVMs.Find(p => p.Id == id).Count = count;
+        //        basket = JsonConvert.SerializeObject(basketVMs);
+        //        HttpContext.Response.Cookies.Append("basket", basket);
+        //        foreach (BasketVM basketVM in basketVMs)
+        //        {
+        //            Product product = _context.Products
+        //           .FirstOrDefault(p => p.Id == basketVM.Id && p.IsDeleted == false);
+
+        //            basketVM.Title = product.Title;
+        //            basketVM.Image = product.MainImage;
+        //            basketVM.Price =  product.Price;
+        //            basketVM.DiscountedPrice = product.DiscountedPrice;
+        //        }
+        //        return PartialView("_BasketPartial", basketVMs);
+        //    }
+        //    else
+        //    {
+        //        return BadRequest();
+        //    }
+        //}
         public IActionResult RefreshCartTotal()
         {
             string basket = HttpContext.Request.Cookies["basket"];
@@ -154,7 +198,8 @@ namespace LuminateFinalProject.Controllers
                     {
                         basketVM.Title = product.Title;
                         basketVM.Image = product.MainImage;
-                        basketVM.Price = product.Price;
+                        basketVM.Price =product.Price;
+                        basketVM.DiscountedPrice = product.DiscountedPrice;
                         totalPrice += (basketVM.Count * (decimal)product.Price);
                     }
                 }

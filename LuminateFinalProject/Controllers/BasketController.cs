@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using LuminateFinalProject.DataAccessLayer;
 using LuminateFinalProject.Models;
+using LuminateFinalProject.ViewModels.AccountViewModels;
 using LuminateFinalProject.ViewModels.BasketViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -14,10 +16,12 @@ namespace LuminateFinalProject.Controllers
     public class BasketController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly UserManager<AppUser> _userManager;
 
-        public BasketController(AppDbContext context)
+        public BasketController(AppDbContext context, UserManager<AppUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
         public IActionResult Index()
         {
@@ -72,6 +76,28 @@ namespace LuminateFinalProject.Controllers
                     basketVMs.Add(new BasketVM { Id = (int)id, Count = 1 });
                 }
             }
+            if (User.Identity.IsAuthenticated)
+            {
+                AppUser appUser = await _userManager.Users
+                    .Include(u => u.Baskets.Where(b => b.IsDeleted == false))
+                .FirstOrDefaultAsync(u => u.NormalizedUserName == User.Identity.Name.ToUpperInvariant());
+
+                if (appUser.Baskets.Any(b=>b.ProductId==id))
+                {
+                    appUser.Baskets.FirstOrDefault(b => b.ProductId == id).Count = basketVMs.FirstOrDefault(b => b.Id == id).Count;
+                }
+                else
+                {
+                    Basket dbbasket = new Basket
+                    {
+                        ProductId = id,
+                        Count = basketVMs.FirstOrDefault(b => b.Id == id).Count
+                    };
+                    appUser.Baskets.Add(dbbasket);
+                }
+                await _context.SaveChangesAsync();
+
+            }
 
             basket = JsonConvert.SerializeObject(basketVMs);
 
@@ -83,7 +109,8 @@ namespace LuminateFinalProject.Controllers
 
                 if (product != null)
                 {
-                    basketVM.Price = product.DiscountedPrice > 0 ? product.DiscountedPrice : product.Price;
+                    basketVM.Price = product.Price;
+                    basketVM.DiscountedPrice = product.DiscountedPrice;
                     basketVM.Title = product.Title;
                     basketVM.Image = product.MainImage;
                     
@@ -127,7 +154,8 @@ namespace LuminateFinalProject.Controllers
                 var product = await _context.Products.FindAsync(item.Id);
                 item.Title = product.Title;
                 item.Image = product.MainImage;
-                item.Price = product.DiscountedPrice > 0 ? product.DiscountedPrice : product.Price;
+                item.Price =  product.Price;
+                item.DiscountedPrice = product.DiscountedPrice;
             }
 
             basket = JsonConvert.SerializeObject(basketVMs);
@@ -136,7 +164,7 @@ namespace LuminateFinalProject.Controllers
             return PartialView("_BasketPartial", basketVMs);
         }
 
-
+        [HttpGet]
         public async Task<IActionResult> RefreshBasket()
         {
             string basket = HttpContext.Request.Cookies["basket"];
@@ -153,7 +181,7 @@ namespace LuminateFinalProject.Controllers
                 var product = await _context.Products.FindAsync(item.Id);
                 item.Title = product.Title;
                 item.Image = product.MainImage;
-                item.Price = product.Price;
+                item.Price =  product.Price;
                 item.DiscountedPrice = product.DiscountedPrice;
             }
 
@@ -177,7 +205,7 @@ namespace LuminateFinalProject.Controllers
                 var product = await _context.Products.FindAsync(item.Id);
                 item.Title = product.Title;
                 item.Image = product.MainImage;
-                item.Price = product.Price;
+                item.Price =  product.Price;
                 item.DiscountedPrice = product.DiscountedPrice;
 
             }
@@ -211,7 +239,7 @@ namespace LuminateFinalProject.Controllers
                 var product = await _context.Products.FindAsync(item.Id);
                 item.Title = product.Title;
                 item.Image = product.MainImage;
-                item.Price = product.Price;
+                item.Price =  product.Price;
                 item.DiscountedPrice = product.DiscountedPrice;
 
             }

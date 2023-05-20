@@ -2,7 +2,7 @@
 @foreach (BasketVM basketVM in Model)
 {
     <tr>
-        <td class="product-remove"><a data-id="@basketVM.Id" class="cartdelete"><i class='bx bx-x-circle'></i></a></td>
+        <td class="product-remove"><a data-id="@basketVM.Id" asp-controller="basket" asp-action="deleteFromCart" asp-route-id="@basketVM.Id" class="cartdelete"><i class='bx bx-x-circle'></i></a></td>
         <td class="product-image">
             <a href="">
                 <img src="~/assets/images/product/@basketVM.Image" alt="">
@@ -25,13 +25,22 @@
         </td>
         <td class="product-qty">
             <div class="qty-input">
-                <span class="minus-qty"></span>
+                <span class="minus-qty"  data-id="@basketVM.Id"></span>
                 <input data-productId="@basketVM.Id" class="product-cart-count" type="text" value="@basketVM.Count" name="" id="">
-                <span class="plus-qty"></span>
+                <span class="plus-qty" data-id="@basketVM.Id"></span>
             </div>
         </td>
         <td class="product-subtotal">
-            <span>$@(basketVM.Count * basketVM.Price)</span>
+            @if (basketVM.DiscountedPrice > 0)
+            {
+                <span>$@(basketVM.Count*basketVM.DiscountedPrice)</span>
+
+            }
+            else
+            {
+                <span>$@(basketVM.Count*basketVM.Price)</span>
+            }
+
         </td>
     </tr>
 }

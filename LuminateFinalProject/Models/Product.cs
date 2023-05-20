@@ -34,6 +34,7 @@ namespace LuminateFinalProject.Models
         public IFormFile? MainFile { get; set; }
 
         public IEnumerable<Review>? Reviews { get; set; }
+        public IEnumerable<Basket>? Baskets { get; set; }
     }
 }
 

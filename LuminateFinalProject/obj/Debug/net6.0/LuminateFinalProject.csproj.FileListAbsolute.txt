@@ -7,6 +7,9 @@
 /Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/bin/Debug/net6.0/LuminateFinalProject.dll
 /Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/bin/Debug/net6.0/LuminateFinalProject.pdb
 /Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/bin/Debug/net6.0/Humanizer.dll
+/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/bin/Debug/net6.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/bin/Debug/net6.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/bin/Debug/net6.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 /Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/bin/Debug/net6.0/Microsoft.Data.SqlClient.dll
 /Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.dll
 /Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -15,6 +18,8 @@
 /Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.SqlServer.dll
 /Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/bin/Debug/net6.0/Microsoft.Extensions.Caching.Memory.dll
 /Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/bin/Debug/net6.0/Microsoft.Extensions.DependencyInjection.dll
+/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/bin/Debug/net6.0/Microsoft.Extensions.Identity.Core.dll
+/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/bin/Debug/net6.0/Microsoft.Extensions.Identity.Stores.dll
 /Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/bin/Debug/net6.0/Microsoft.Identity.Client.dll
 /Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/bin/Debug/net6.0/Microsoft.IdentityModel.JsonWebTokens.dll
 /Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/bin/Debug/net6.0/Microsoft.IdentityModel.Logging.dll
@@ -65,8 +70,3 @@
 /Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/obj/Debug/net6.0/LuminateFinalProject.pdb
 /Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/obj/Debug/net6.0/LuminateFinalProject.genruntimeconfig.cache
 /Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/obj/Debug/net6.0/ref/LuminateFinalProject.dll
-/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/bin/Debug/net6.0/Microsoft.AspNetCore.Cryptography.Internal.dll
-/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/bin/Debug/net6.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
-/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/bin/Debug/net6.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
-/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/bin/Debug/net6.0/Microsoft.Extensions.Identity.Core.dll
-/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/bin/Debug/net6.0/Microsoft.Extensions.Identity.Stores.dll

@@ -15,6 +15,11 @@ namespace LuminateFinalProject.DataAccessLayer
         public DbSet<Category> Categories { get; set; }
         public DbSet<Material> Materials { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
+
 
     }
 

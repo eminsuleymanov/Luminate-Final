@@ -91,33 +91,59 @@
     miniCart.classList.remove('active');
   })
 
+$(document).on('click', '.plus-qty', function () {
+    let inputValueAll = document.querySelectorAll('.product-cart-count');
+    let productId = $(this).attr('data-id');
+    let index = Array.from(document.querySelectorAll('.plus-qty')).indexOf(this);
 
-function plusQtyBtn(){
-  const plusBtn = document.querySelectorAll('.plus-qty');
-  let inputValueAll = document.querySelectorAll('.product-cart-count')
-  let count = 1;
-  plusBtn.forEach((item,index) => {
-    item.addEventListener('click',()=>{
-      let inputValue = Number(inputValueAll[index].value);
-      inputValueAll[index].value = inputValue +1;
-    })
-  });
-}
-plusQtyBtn();
+    let inputValue = Number(inputValueAll[index].value);
+    inputValueAll[index].value = inputValue + 1;
 
-function minusQtyBtn(){
-  const minusBtn = document.querySelectorAll('.minus-qty');
-  const inputValueAll = document.querySelectorAll('.product-cart-count');
-  minusBtn.forEach((item, index) => {
-    item.addEventListener('click', () => {
-      let inputValue = Number(inputValueAll[index].value);
-      if (inputValue > 1) {
-        inputValueAll[index].value = inputValue -1;
-      }
-    });
-  });
-}
-minusQtyBtn();
+    fetch('product/ChangeBasketProductCount?id=' + productId + '&count=' + inputValueAll[index].value)
+        .then(res => res.text())
+        .then(data => {
+            $('.productTable').html(data);
+            fetch('product/ChangeCartProductCount?id=' + productId + '&count=' + inputValueAll[index].value)
+                .then(res1 => res1.text())
+                .then(data1 => {
+                    $('.cartbody').html(data1);
+                    fetch('product/RefreshCartTotal')
+                        .then(res2 => res2.text())
+                        .then(data2 => {
+                            $('.cart-total-box').html(data2);
+                        })
+                })
+        });
+        
+    
+});
+
+$(document).on('click', '.minus-qty', function () {
+    let inputValueAll = document.querySelectorAll('.product-cart-count');
+    let productId = $(this).attr('data-id');
+    let index = Array.from(document.querySelectorAll('.minus-qty')).indexOf(this);
+
+    let inputValue = Number(inputValueAll[index].value);
+    if (inputValue > 1) {
+        inputValueAll[index].value = inputValue - 1;
+
+        fetch('product/ChangeBasketProductCount?id=' + productId + '&count=' + inputValueAll[index].value)
+            .then(res => res.text())
+            .then(data => {
+                $('.productTable').html(data);
+                fetch('product/ChangeCartProductCount?id=' + productId + '&count=' + inputValueAll[index].value)
+                    .then(res => res.text())
+                    .then(data => {
+                        $('.cartbody').html(data);
+                        fetch('product/RefreshCartTotal')
+                            .then(res2 => res2.text())
+                            .then(data2 => {
+                                $('.cart-total-box').html(data2);
+                            })
+                    })
+            });
+    }
+});
 
 
 
@@ -182,7 +208,7 @@ $(document).on('click', '#filterBtn', function () {
         });
 });
 
-
+//Add To Cart
 $(".minicart-badge").html($(".cartcount").text());
 $(".addToCart").click(function (e) {
     e.preventDefault();
@@ -193,7 +219,7 @@ $(".addToCart").click(function (e) {
 
         })
         .then(data => {
-            $("#Cart").html(data);
+            $(".cartbody").html(data);
 
             $(".minicart-badge").html($(".cartcount").text())
 
@@ -201,17 +227,18 @@ $(".addToCart").click(function (e) {
 
 
 })
+
 //Delete from Basket
+console.log(window.location.pathname)
 $(document).on('click', ".remove_btn", function (e) {
     e.preventDefault();
-    let productId = $(this).data('id');
-    fetch("basket/DeleteFromBasket?id=" + productId)
+    let url = $(this).attr('href');
+    fetch(url)
         .then(res => {
             return res.text();
         })
         .then(data => {
-            $("#Cart").html(data);
-        
+            $(".cartbody").html(data);
             $(".minicart-badge").html($(".cartcount").text())
             fetch("basket/RefreshIndex")
                 .then(res1 => {
@@ -219,6 +246,12 @@ $(document).on('click', ".remove_btn", function (e) {
                 })
                 .then(data1 => {
                     $(".productTable").html(data1);
+                    $(".minicart-badge").html($(".cartcount").text())
+                    fetch('product/RefreshCartTotal')
+                        .then(res2 => res2.text())
+                        .then(data2 => {
+                            $('.cart-total-box').html(data2);
+                        })
                 })
 
         })
@@ -228,20 +261,29 @@ $(document).on('click', ".remove_btn", function (e) {
 //Delete from Cart
 $(document).on('click', ".cartdelete", function (e) {
     e.preventDefault();
-    let productId = $(this).data('id');
-   
-    fetch("basket/DeleteFromCart?id=" + productId)
-        .then(res => res.text())
-        .then(data => {
-            $(".productTable").html(data);
-            $(".minicart-badge").html($(".cartcount").text())
 
-            fetch('basket/RefreshBasket')
-                .then(res1 => res1.text())
+    let url = $(this).attr('href');
+    fetch(url).then(res => res.text()).then(data => {
+        $(".productTable").html(data);
+        $(".minicart-badge").html($(".cartcount").text())
+        fetch('basket/RefreshBasket').then(res1 => res1.text())
             .then(data1 => {
-                $("#Cart").html(data1);
-                
+                $(".cartbody").html(data1);
+                $(".minicart-badge").html($(".cartcount").text())
+                fetch('product/RefreshCartTotal')
+                    .then(res2 => res2.text())
+                    .then(data2 => {
+                        $('.cart-total-box').html(data2);
+                    })
             })
     })
+
+})
+
+$(document).on('click', '.addAddress', function (e) {
+    e.preventDefault();
+    $('.user-addresses').addClass('d-none');
+    $('.addressForm').removeClass('d-none');
+    $('.addAddress').addClass('d-none');
 
 })

@@ -1,33 +1,18 @@
 ﻿<Properties StartupConfiguration="{23FE470B-0EC0-4D7D-9166-CA8F3042560F}|Default">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Controllers/AccountController.cs" relfile="LuminateFinalProject/Controllers/AccountController.cs" line="174" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="LuminateFinalProject/wwwroot/assets/js/main.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="LuminateFinalProject/Models/Basket.cs">
     <Files>
-      <File FileName="LuminateFinalProject/Controllers/ShopController.cs" Line="58" Column="28" />
-      <File FileName="LuminateFinalProject/Views/Shared/_ShopListPartial.cshtml" Line="106" Column="38" />
-      <File FileName="LuminateFinalProject/wwwroot/assets/js/main.js" Line="225" Column="1" />
-      <File FileName="LuminateFinalProject/Views/Product/Details.cshtml" Line="57" Column="55" />
-      <File FileName="LuminateFinalProject/wwwroot/assets/css/style.css" Line="931" Column="5" />
-      <File FileName="LuminateFinalProject/Controllers/BasketController.cs" Line="185" Column="33" />
-      <File FileName="LuminateFinalProject/Views/Basket/Index.cshtml" Line="21" Column="55" />
-      <File FileName="LuminateFinalProject/Views/Shared/_BasketPartial.cshtml" Line="28" Column="109" />
-      <File FileName="LuminateFinalProject/Views/Shared/_BasketProductTablePartial.cshtml" Line="5" Column="44" />
-      <File FileName="LuminateFinalProject/Views/Shared/_CartTotalPartial.cshtml" Line="9" Column="66" />
-      <File FileName="LuminateFinalProject/Views/Shared/_Layout.cshtml" Line="232" Column="42" />
-      <File FileName="LuminateFinalProject/Services/LayoutService.cs" Line="38" Column="112" />
-      <File FileName="LuminateFinalProject/Interfaces/ILayoutService.cs" Line="8" Column="50" />
-      <File FileName="LuminateFinalProject/Program.cs" Line="29" Column="61" />
-      <File FileName="LuminateFinalProject/Views/_ViewImports.cshtml" Line="9" Column="37" />
-      <File FileName="LuminateFinalProject/ViewModels/BasketViewModels/BasketVM.cs" Line="12" Column="39" />
-      <File FileName="LuminateFinalProject/Controllers/ProductController.cs" Line="166" Column="1" />
-      <File FileName="LuminateFinalProject/Views/Shared/_ProductCardPartial.cshtml" Line="20" Column="13" />
-      <File FileName="LuminateFinalProject/Views/Home/Index.cshtml" Line="1" Column="1" />
-      <File FileName="LuminateFinalProject/Controllers/AccountController.cs" Line="27" Column="29" />
+      <File FileName="LuminateFinalProject/wwwroot/assets/js/main.js" Line="286" Column="45" IsPinned="True" />
+      <File FileName="LuminateFinalProject/Models/Order.cs" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Models/OrderItem.cs" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Models/Basket.cs" Line="10" Column="24" />
+      <File FileName="LuminateFinalProject/Controllers/AccountController.cs" Line="114" Column="103" />
+      <File FileName="LuminateFinalProject/Controllers/BasketController.cs" Line="99" Column="1" />
+      <File FileName="LuminateFinalProject/Models/AppUser.cs" Line="17" Column="29" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -35,19 +20,15 @@
           <Node name="LuminateFinalProject" expanded="True">
             <Node name="LuminateFinalProject" expanded="True">
               <Node name="Controllers" expanded="True" />
-              <Node name="Views" expanded="True">
-                <Node name="Basket" expanded="True" />
-                <Node name="Home" expanded="True" />
-                <Node name="Product" expanded="True" />
-                <Node name="Shared" expanded="True" />
+              <Node name="DataAccessLayer" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="Basket.cs" selected="True" />
               </Node>
-              <Node name="wwwroot" expanded="True">
-                <Node name="assets" expanded="True">
-                  <Node name="css" expanded="True" />
-                  <Node name="js" expanded="True">
-                    <Node name="main.js" selected="True" />
-                  </Node>
-                </Node>
+              <Node name="ViewModels" expanded="True">
+                <Node name="BasketViewModels" expanded="True" />
+              </Node>
+              <Node name="Views" expanded="True">
+                <Node name="Shared" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -55,6 +36,6 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.LuminateFinalProject PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

@@ -18,23 +18,23 @@
         <div class="section-container">
             <div class="tab-list">
                 <ul type="none" class="tab-ul">
-                    <li class="tab-li tab-li-active"><span>Dashboard</span></li>
-                    <li class="tab-li"><span>Orders</span></li>
-                    <li class="tab-li"><span>Addresses</span></li>
-                    <li class="tab-li"><span>Account Details</span></li>
+                    <li class="tab-li @(TempData["Tab"]?.ToString() == null ? "tab-li-active" : "") "><span>Dashboard</span></li>
+                    <li class="tab-li @(TempData["Tab"]?.ToString() == "order" ? "tab-li-active" : "") "><span>Orders</span></li>
+                    <li class="tab-li @(TempData["Tab"]?.ToString() == "address" ? "tab-li-active" : "") "><span>Addresses</span></li>
+                    <li class="tab-li @(TempData["Tab"]?.ToString() == "details" ? "tab-li-active" : "")  "><span>Account Details</span></li>
                     <li class="tab-li">
                         <a class="logout_btn" asp-controller="account" asp-action="logout"><span>Logout</span></a>
                     </li>
                 </ul>
                 <hr style="margin-top: 10px; margin-bottom: 30px;">
-                <div class="my-account-content my-account-content-active">
+                <div class="my-account-content @(TempData["Tab"]?.ToString() == null ? "my-account-content-active" : "")">
                     <div class="dashboard-content ">
                         <p>Hello <span>@appUser?.UserName</span> (not <span>@appUser?.UserName</span> ? <a asp-controller="account" asp-action="logout">Log out</a>)</p>
                         <p>From your account dashboard you can view your <a href="">recent orders</a>, manage your <a href="">shipping and billing addresses</a>, and <a href=""> edit your password and account details.</a></p>
 
                     </div>
                 </div>
-                <div class="my-account-content">
+                <div class="my-account-content @(TempData["Tab"]?.ToString() == "order" ? "my-account-content-active" : "")">
                     <div class="orders-content ">
                         <table>
                             <thead>
@@ -65,23 +65,39 @@
                         </table>
                     </div>
                 </div>
-                <div class="my-account-content ">
+                <div class="my-account-content @(TempData["Tab"]?.ToString() == "address" ? "my-account-content-active" : "") ">
                     <div class="adresses-content ">
                         <p>The following addresses will be used on the checkout page by default.</p>
-                        <div class="user-addresses">
-                            <div class="address">
-                                <h3>Billing address</h3>
-                                <a href="" class="">Edit</a>
-                            </div>
-                            <div>
-                                <ul>
-                                    <li><span>Name </span> <span>Surname</span></li>
-                                    <li>Company Name</li>
-                                    <li>street adress</li>
-                                    <li> additional street adress</li>
-                                    <li>town city</li>
-                                </ul>
-                            </div>
+                        <a class="addAddress">Add Address</a>
+                        <div class="addressForm d-none">
+                            @await Html.PartialAsync("_AddressFormPartial", new Address())
+                        </div>
+                       
+                        <div class="my-3 user-addresses ">
+
+                            @if (Model.Addresses != null && Model.Addresses.Count() > 0)
+                            {
+                                foreach (Address address in Model.Addresses)
+                                {
+                                    <div class="address">
+                                        <h3>Billing address</h3>
+                                        <a asp-controller="account" asp-action="editAddress" asp-route-id="@address.Id" class="">Edit</a>
+                                    </div>
+                                    <div>
+                                        <ul>
+                                            <li><span>Name </span> <span>Surname</span></li>
+                                            <li>@address.Country</li>
+                                            <li>@address.City</li>
+                                            <li> @address.AddressLine</li>
+                                            <li>@address.PostalCode</li>
+                                            <li>Default Address: @address.IsMain</li>
+                                        </ul>
+                                    </div>
+
+                                }
+
+                            }
+
                             <div class="address">
                                 <h3>Shipping address</h3>
                                 <a href="" class="">Edit</a>
@@ -96,9 +112,10 @@
                                 </ul>
                             </div>
                         </div>
+
                     </div>
                 </div>
-                <div class="my-account-content">
+                <div class="my-account-content @(TempData["Tab"]?.ToString() == "details" ? "my-account-content-active" : "")">
                     <div class="account-details-content">
                         <div class="details">
                             <form method="post" class="row g-3" asp-controller="account" asp-action="profile">

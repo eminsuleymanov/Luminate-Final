@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using LuminateFinalProject.DataAccessLayer;
 using LuminateFinalProject.Models;
 using LuminateFinalProject.ViewModels.AccountViewModels;
+using LuminateFinalProject.ViewModels.BasketViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace LuminateFinalProject.Controllers
 {
@@ -17,11 +20,13 @@ namespace LuminateFinalProject.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<AppUser> _signInManager;
-        public AccountController(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<AppUser> signInManager)
+        private readonly AppDbContext _context;
+        public AccountController(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<AppUser> signInManager, AppDbContext context)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
+            _context = context;
         }
         [AllowAnonymous]
         public IActionResult Register()
@@ -105,7 +110,10 @@ namespace LuminateFinalProject.Controllers
         public async Task<IActionResult> Login(LoginVM loginVM)
         {
             if (!ModelState.IsValid) return View(loginVM);
-            AppUser appUser = await _userManager.FindByEmailAsync(loginVM.Email);
+            AppUser appUser = await _userManager.Users.Include(u=>u.Baskets.Where(b=>b.IsDeleted==false))
+                .FirstOrDefaultAsync(u=>u.NormalizedEmail == loginVM.Email.Trim().ToUpperInvariant());
+
+
             if (appUser==null)
             {
                 ModelState.AddModelError("","Email or Password is incorrect ");
@@ -133,6 +141,31 @@ namespace LuminateFinalProject.Controllers
                 return RedirectToAction("index", "dashboard", new { area = "manage" });
             }
 
+            string basket = HttpContext.Request.Cookies["basket"];
+            if (string.IsNullOrWhiteSpace(basket))
+            {
+                if (appUser.Baskets != null && appUser.Baskets.Count()>0)
+                {
+                    List<BasketVM> basketVMs = new List<BasketVM>();
+                    foreach (Basket basket1 in appUser.Baskets)
+                    {
+                        BasketVM basketVM = new BasketVM
+                        {
+                            Id = (int)basket1.ProductId,
+                            Count = basket1.Count
+                        };
+                        basketVMs.Add(basketVM);
+                    }
+                    basket = JsonConvert.SerializeObject(basketVMs);
+                    HttpContext.Response.Cookies.Append("basket", basket);
+                }
+            }
+            else
+            {
+                HttpContext.Response.Cookies.Append("basket", "");
+            }
+
+
             return RedirectToAction("profile","Account");
         }
         [HttpGet]
@@ -147,6 +180,7 @@ namespace LuminateFinalProject.Controllers
         public async Task<IActionResult> Profile()
         {
             AppUser appUser = await _userManager.Users
+                .Include(u=>u.Addresses.Where(a=>a.IsDeleted==false))
                 .FirstOrDefaultAsync(u => u.NormalizedUserName == User.Identity.Name.ToUpperInvariant());
             
             ProfileVM profileVM = new ProfileVM
@@ -155,16 +189,11 @@ namespace LuminateFinalProject.Controllers
                 Surname = appUser.Surname,
                 Username = appUser.UserName,
                 Email = appUser.Email,
-                
+                Addresses = appUser.Addresses
                 
                 
             };
             
-            //ProfileVM profileVM = new ProfileVM
-            //{
-            //    Addresses = appUser.Addresses
-
-            //};
             return View(profileVM);
         }
         [HttpPost]
@@ -242,6 +271,39 @@ namespace LuminateFinalProject.Controllers
             return RedirectToAction("Index","Home");
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Member")]
+        public async Task<IActionResult> AddAddress(Address address)
+        {
+            AppUser appUser = await _userManager.Users
+                .Include(u => u.Addresses.Where(a => a.IsDeleted == false))
+                .FirstOrDefaultAsync(u => u.NormalizedUserName == User.Identity.Name.ToUpperInvariant());
+
+            ProfileVM profileVM = new ProfileVM
+            {
+                Name = appUser.Name,
+                Surname = appUser.Surname,
+                Username = appUser.UserName,
+                Email = appUser.Email,
+                Addresses = appUser.Addresses
+            };
+
+            if (!ModelState.IsValid) return View(nameof(Profile), profileVM);
+            if (address.IsMain ==true && appUser.Addresses != null && appUser.Addresses.Count()>0 && appUser.Addresses.Any(a=>a.IsMain))
+            {
+                appUser.Addresses.FirstOrDefault(a => a.IsMain).IsMain = false;
+
+            }
+            address.UserId = appUser.Id;
+            address.CreatedBy = $"{appUser.Name} {appUser.Surname}";
+            address.CreatedAt = DateTime.UtcNow.AddHours(4);
+            await _context.Addresses.AddAsync(address);
+            await _context.SaveChangesAsync();
+
+            TempData["Tab"] = "address";
+            return RedirectToAction(nameof(Profile));
+        }
 
     }
 }

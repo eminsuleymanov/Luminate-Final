@@ -4,6 +4,7 @@ using LuminateFinalProject.DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LuminateFinalProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230520132722_AddressTableUpdateV2")]
+    partial class AddressTableUpdateV2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -157,53 +159,6 @@ namespace LuminateFinalProject.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("LuminateFinalProject.Models.Basket", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DeletedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Baskets");
-                });
-
             modelBuilder.Entity("LuminateFinalProject.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -341,7 +296,7 @@ namespace LuminateFinalProject.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Order");
                 });
 
             modelBuilder.Entity("LuminateFinalProject.Models.OrderItem", b =>
@@ -391,7 +346,7 @@ namespace LuminateFinalProject.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderItems");
+                    b.ToTable("OrderItem");
                 });
 
             modelBuilder.Entity("LuminateFinalProject.Models.Product", b =>
@@ -731,21 +686,6 @@ namespace LuminateFinalProject.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("LuminateFinalProject.Models.Basket", b =>
-                {
-                    b.HasOne("LuminateFinalProject.Models.Product", "Product")
-                        .WithMany("Baskets")
-                        .HasForeignKey("ProductId");
-
-                    b.HasOne("LuminateFinalProject.Models.AppUser", "User")
-                        .WithMany("Baskets")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Product");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("LuminateFinalProject.Models.Order", b =>
                 {
                     b.HasOne("LuminateFinalProject.Models.AppUser", "User")
@@ -870,8 +810,6 @@ namespace LuminateFinalProject.Migrations
                 {
                     b.Navigation("Addresses");
 
-                    b.Navigation("Baskets");
-
                     b.Navigation("Orders");
 
                     b.Navigation("Reviews");
@@ -894,8 +832,6 @@ namespace LuminateFinalProject.Migrations
 
             modelBuilder.Entity("LuminateFinalProject.Models.Product", b =>
                 {
-                    b.Navigation("Baskets");
-
                     b.Navigation("ProductImages");
 
                     b.Navigation("Reviews");

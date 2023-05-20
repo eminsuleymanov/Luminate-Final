@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using LuminateFinalProject.Models;
 
 namespace LuminateFinalProject.ViewModels.AccountViewModels
 {
@@ -25,6 +26,7 @@ namespace LuminateFinalProject.ViewModels.AccountViewModels
         [Compare("NewPassword")]
         public string? ConfirmPassword { get; set; }
 
+        public IEnumerable<Address>? Addresses { get; set; }
     }
 }
 
