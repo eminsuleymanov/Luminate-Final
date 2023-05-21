@@ -30,11 +30,35 @@
                     <h2 class="product-title">@Model.Product.Title</h2>
                     <div class="product-rating">
                         <div class="product-star-rating">
-                            <span><i class='bx bxs-star'></i></span>
-                            <span><i class='bx bxs-star'></i></span>
-                            <span><i class='bx bxs-star'></i></span>
-                            <span><i class='bx bxs-star'></i></span>
-                            <span><i class='bx bx-star'></i></span>
+                            @if (Model.Product.Reviews.Count() > 0)
+                            {
+                                int sumRatings = 0;
+                                foreach (var review in Model.Product.Reviews)
+                                {
+                                    sumRatings += (int)review.Star; 
+                                }
+                                int averageRating = sumRatings / Model.Product.Reviews.Count();
+
+                                for (int i = 0; i < 5; i++)
+                                {
+                                    if (i < averageRating)
+                                    {
+                                        <span><i class='bx bxs-star'></i></span>
+                                    }
+                                    else
+                                    {
+                                        <span><i class='bx bx-star'></i></span> 
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = 0; i < 5; i++)
+                                {
+                                    <span><i class='bx bx-star'></i></span>
+                                }
+                            }
+
                         </div>
                         <a href="#comments">(<span>@Model.Product.Reviews.Count()</span> customer review)</a>
 

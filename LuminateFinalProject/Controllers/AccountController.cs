@@ -136,7 +136,7 @@ namespace LuminateFinalProject.Controllers
                 ModelState.AddModelError("", "Email or Password is incorrect ");
                 return View(loginVM);
             }
-            if (await _userManager.IsInRoleAsync(appUser, "SuperAdmin"))
+            if ((await _userManager.IsInRoleAsync(appUser, "SuperAdmin"))|| (await _userManager.IsInRoleAsync(appUser, "Admin")))
             {
                 return RedirectToAction("index", "dashboard", new { area = "manage" });
             }
@@ -159,6 +159,7 @@ namespace LuminateFinalProject.Controllers
                     basket = JsonConvert.SerializeObject(basketVMs);
                     HttpContext.Response.Cookies.Append("basket", basket);
                 }
+
             }
             else
             {
@@ -181,6 +182,8 @@ namespace LuminateFinalProject.Controllers
         {
             AppUser appUser = await _userManager.Users
                 .Include(u=>u.Addresses.Where(a=>a.IsDeleted==false))
+                .Include(o=>o.Orders.Where(o=>o.IsDeleted==false))
+                .ThenInclude(oi=>oi.OrderItems.Where(i=>i.IsDeleted==false)).ThenInclude(oi=>oi.Product)
                 .FirstOrDefaultAsync(u => u.NormalizedUserName == User.Identity.Name.ToUpperInvariant());
             
             ProfileVM profileVM = new ProfileVM
@@ -189,9 +192,8 @@ namespace LuminateFinalProject.Controllers
                 Surname = appUser.Surname,
                 Username = appUser.UserName,
                 Email = appUser.Email,
-                Addresses = appUser.Addresses
-                
-                
+                Addresses = appUser.Addresses,
+                Orders = appUser.Orders
             };
             
             return View(profileVM);

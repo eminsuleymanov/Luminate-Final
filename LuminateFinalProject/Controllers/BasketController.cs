@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using LuminateFinalProject.DataAccessLayer;
 using LuminateFinalProject.Models;
 using LuminateFinalProject.ViewModels.AccountViewModels;
 using LuminateFinalProject.ViewModels.BasketViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -45,7 +47,7 @@ namespace LuminateFinalProject.Controllers
             return View(basketVMs);
 
         }
-
+        [Authorize(Roles = "Member")]
         public async Task<IActionResult> AddToBasket(int? id)
         {
             if (id == null) { return BadRequest(); }
@@ -130,6 +132,7 @@ namespace LuminateFinalProject.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "Member")]
         public async Task<IActionResult> DeleteFromBasket(int? id)
         {
             if (id == null) return BadRequest();
@@ -147,6 +150,20 @@ namespace LuminateFinalProject.Controllers
 
             if (basketVM == null) return NotFound();
 
+            if (User.Identity.IsAuthenticated)
+            {
+                AppUser appUser = await _userManager.Users
+                    .Include(u => u.Baskets)
+                    .FirstOrDefaultAsync(u => u.NormalizedUserName == User.Identity.Name.ToUpperInvariant());
+
+                Basket basketToDelete = appUser.Baskets.FirstOrDefault(b => b.ProductId == id);
+                if (basketToDelete != null)
+                {
+                    appUser.Baskets.Remove(basketToDelete);
+                    _context.Baskets.Remove(basketToDelete);
+                    await _context.SaveChangesAsync();
+                }
+            }
 
             basketVMs.Remove(basketVM);
             foreach (var item in basketVMs)
@@ -165,6 +182,7 @@ namespace LuminateFinalProject.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Member")]
         public async Task<IActionResult> RefreshBasket()
         {
             string basket = HttpContext.Request.Cookies["basket"];
@@ -189,6 +207,7 @@ namespace LuminateFinalProject.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Member")]
         public async Task<IActionResult> RefreshIndex()
         {
             string basket = HttpContext.Request.Cookies["basket"];
@@ -215,6 +234,7 @@ namespace LuminateFinalProject.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "Member")]
         public async Task<IActionResult> DeleteFromCart(int? id)
         {
             if (id == null) return BadRequest();
@@ -231,7 +251,19 @@ namespace LuminateFinalProject.Controllers
             BasketVM basketVM = basketVMs.Find(b => b.Id == id);
 
             if (basketVM == null) return NotFound();
+            if (User.Identity.IsAuthenticated)
+            {
+                AppUser appUser = await _userManager.Users
+                    .Include(u => u.Baskets)
+                    .FirstOrDefaultAsync(u => u.NormalizedUserName == User.Identity.Name.ToUpperInvariant());
 
+                Basket basketToDelete = appUser.Baskets.FirstOrDefault(b => b.ProductId == id);
+                if (basketToDelete != null)
+                {
+                    appUser.Baskets.Remove(basketToDelete);
+                    await _context.SaveChangesAsync();
+                }
+            }
 
             basketVMs.Remove(basketVM);
             foreach (var item in basketVMs)

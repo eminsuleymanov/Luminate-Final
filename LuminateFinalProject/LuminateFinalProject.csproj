@@ -39,6 +39,13 @@
     <None Remove="Views\Basket\" />
     <None Remove="Services\" />
     <None Remove="Interfaces\" />
+    <None Remove="Views\Order\" />
+    <None Remove="Enums\" />
+    <None Remove="ViewModels\OrderViewModels\" />
+    <None Remove="Areas\Manage\Views\Order\" />
+    <None Remove="Views\Blog\" />
+    <None Remove="Views\AboutUs\" />
+    <None Remove="Views\Collections\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -75,6 +82,13 @@
     <Folder Include="Views\Basket\" />
     <Folder Include="Services\" />
     <Folder Include="Interfaces\" />
+    <Folder Include="Views\Order\" />
+    <Folder Include="Enums\" />
+    <Folder Include="ViewModels\OrderViewModels\" />
+    <Folder Include="Areas\Manage\Views\Order\" />
+    <Folder Include="Views\Blog\" />
+    <Folder Include="Views\AboutUs\" />
+    <Folder Include="Views\Collections\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\" />

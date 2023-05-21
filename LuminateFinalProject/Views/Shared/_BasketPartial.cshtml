@@ -72,13 +72,13 @@
 
         <div class="sub-content">
             <h5>SubTotal:</h5>
-            <span class="subtotal">$@Model.Sum(b => b.Count * b.Price)</span>
+            <span class="subtotal">$ @Model.Sum(b => b.DiscountedPrice>0 ? (b.Count * b.DiscountedPrice)  :(b.Count * b.Price))</span>
             <span class="cartcount d-none">@Model.Count()</span>
         </div>
         <hr>
 
         <div class="checkout">
-            <a asp-controller="shop" asp-action="checkout" class="checkout_btn">Go To Checkout</a>
+            <a asp-controller="order" asp-action="checkout" class="checkout_btn">Go To Checkout</a>
         </div>
         <a class="viewCart" asp-controller="basket" asp-action="index"><span>View My Cart</span></a>
 

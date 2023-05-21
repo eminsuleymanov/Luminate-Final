@@ -99,17 +99,17 @@
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="cart.html">
+                                                                <a asp-controller="basket" asp-action="index">
                                                                     <span>Cart</span>
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="checkout.html">
+                                                                <a asp-controller="order" asp-action="checkout">
                                                                     <span>Checkout</span>
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="my-account.html">
+                                                                <a asp-controller="account" asp-action="profile">
                                                                     <span>My Account</span>
                                                                 </a>
                                                             </li>
@@ -125,7 +125,7 @@
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="">
+                                                        <a asp-controller="blog" asp-action="index">
                                                             <img style="width: 310px; height: 250px;" src="	https://demo.agnidesigns.com/luminate/wp-content/uploads/2022/06/menu-2.png" alt="">
                                                             <span style="display: inline-block; margin-top: 5px; font-weight: 600;">
                                                                 <span>Explore our Blog</span>
@@ -141,10 +141,10 @@
 
                                 </li>
                                 <li>
-                                    <a href="collections.html">Collections</a>
+                                    <a asp-controller="collections" asp-action="index">Collections</a>
                                 </li>
                                 <li class="blognav">
-                                    <a href="blog.html">
+                                    <a asp-controller="blog" asp-action="index">
                                         Blog<span><i class='bx bx-chevron-down'></i></span>
                                         <div class="spacer"></div>
 
@@ -184,12 +184,12 @@
                                     <div class="mini-dropdown pages ">
                                         <ul class="mini-dropdown-content">
                                             <li>
-                                                <a href="about.html">
+                                                <a asp-controller="aboutus" asp-action="index">
                                                     <span>About Us </span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="contact-us.html">
+                                                <a asp-controller="aboutus" asp-action="contactus">
                                                     <span> Contact Us</span>
                                                 </a>
                                             </li>

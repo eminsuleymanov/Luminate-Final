@@ -210,23 +210,20 @@ $(document).on('click', '#filterBtn', function () {
 
 //Add To Cart
 $(".minicart-badge").html($(".cartcount").text());
-$(".addToCart").click(function (e) {
+
+$(document).on("click", ".addToCart", function (e) {
     e.preventDefault();
     let productId = $(this).data('id');
     fetch("basket/AddToBasket?id=" + productId)
         .then(res => {
             return res.text();
-
         })
         .then(data => {
             $(".cartbody").html(data);
+            $(".minicart-badge").html($(".cartcount").text());
+        });
+});
 
-            $(".minicart-badge").html($(".cartcount").text())
-
-        })
-
-
-})
 
 //Delete from Basket
 console.log(window.location.pathname)
@@ -279,7 +276,7 @@ $(document).on('click', ".cartdelete", function (e) {
     })
 
 })
-
+//Add Address
 $(document).on('click', '.addAddress', function (e) {
     e.preventDefault();
     $('.user-addresses').addClass('d-none');
@@ -287,3 +284,16 @@ $(document).on('click', '.addAddress', function (e) {
     $('.addAddress').addClass('d-none');
 
 })
+//Toogle table
+$(document).on('click', '.accordion-toggle', function () {
+    var targetRow = $(this).closest('tr').next('.hiddenRow');
+    targetRow.toggleClass('show');
+});
+
+//$('.accordian-body').on('show.bs.collapse', function () {
+//    $(this).closest("table")
+//        .find(".collapse.in")
+//        .not(this)
+//    //.collapse('toggle')
+//})
+

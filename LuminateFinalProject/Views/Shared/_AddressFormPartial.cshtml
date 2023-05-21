@@ -5,24 +5,15 @@
         <label asp-for="IsMain" class="form-label">Is Main</label>
         <input asp-for="IsMain" class="form-control">
     </div>
-    @*<div class="col-md-6 my-2">
-        <label for="inputFirstName" class="form-label">First Name*</label>
-        <input style="accent-color: #F6F5F2;" type="text" class="form-control" id="inputFirstName">
-    </div>
-    <div class="col-md-6 my-2">
-        <label for="inputLastName" class="form-label">Last Name*</label>
-        <input type="text" class="form-control">
-    </div>*@
+    
     <div class="col-md-6 my-2">
         <label asp-for="Country" class="form-label">Country / Region</label>
-        <input asp-for="Country" class="form-control" id="inputCountry" placeholder="Azerbaijan">
+        <input asp-for="Country" class="form-control"  placeholder="Azerbaijan">
     </div>
     <div class="col-md-6 my-2">
         <label asp-for="State" class="form-label">State</label>
-        <select asp-for="State" class="form-select">
-            <option selected>Choose...</option>
-            <option>...</option>
-        </select>
+        <input asp-for="State" class="form-control" placeholder="Azerbaijan">
+        <span asp-validation-for="State" class="text text-danger"></span>
     </div>
     <div class="col-md-6 my-2">
         <label asp-for="City" class="form-label">City</label>
@@ -30,7 +21,7 @@
     </div>
     <div class="col-md-6 my-2">
         <label asp-for="AddressLine" class="form-label">Address</label>
-        <input asp-for="AddressLine" class="form-control" id="inputAddress" placeholder="1234 Main St">
+        <input asp-for="AddressLine" class="form-control" placeholder="1234 Main St">
     </div>
     @*<div class="col-md-6">
             <label for="inputAddress2" class="form-label">Address 2</label>
@@ -44,7 +35,7 @@
 
     <div class="col-md-6 my-2">
         <label for="inputEmail" class="form-label">Email*</label>
-        <input type="email" class="form-control" id="inputEmail" placeholder="emin14@mail.ru">
+        <input type="email" class="form-control"  placeholder="emin14@mail.ru">
     </div>
 
     <div class="checkout ">

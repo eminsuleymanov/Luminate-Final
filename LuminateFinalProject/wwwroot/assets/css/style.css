@@ -1854,9 +1854,18 @@ input[type=checkbox]:checked::before {
 /* Reset Password */
 
 
-
-
-
+.hiddenRow {
+    padding: 0 4px !important;
+    background-color: #eeeeee;
+    font-size: 13px;
+    display:none;
+}
+.show {
+    display:table-row;
+}
+#My-account table tr {
+    cursor:pointer;
+}
 
 
 

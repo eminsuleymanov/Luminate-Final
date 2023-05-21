@@ -1,34 +1,47 @@
 ﻿<Properties StartupConfiguration="{23FE470B-0EC0-4D7D-9166-CA8F3042560F}|Default">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="LuminateFinalProject/Models/Basket.cs">
+  <MonoDevelop.Ide.ItemProperties.LuminateFinalProject PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="LuminateFinalProject/Areas/Manage/Controllers/UserController.cs">
     <Files>
-      <File FileName="LuminateFinalProject/wwwroot/assets/js/main.js" Line="286" Column="45" IsPinned="True" />
-      <File FileName="LuminateFinalProject/Models/Order.cs" Line="1" Column="1" />
-      <File FileName="LuminateFinalProject/Models/OrderItem.cs" Line="1" Column="1" />
-      <File FileName="LuminateFinalProject/Models/Basket.cs" Line="10" Column="24" />
-      <File FileName="LuminateFinalProject/Controllers/AccountController.cs" Line="114" Column="103" />
-      <File FileName="LuminateFinalProject/Controllers/BasketController.cs" Line="99" Column="1" />
-      <File FileName="LuminateFinalProject/Models/AppUser.cs" Line="17" Column="29" />
+      <File FileName="LuminateFinalProject/wwwroot/assets/js/main.js" Line="290" Column="35" />
+      <File FileName="LuminateFinalProject/Areas/Manage/Controllers/UserController.cs" Line="99" Column="14" />
+      <File FileName="LuminateFinalProject/Areas/Manage/Views/User/Index.cshtml" Line="56" Column="135" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="LuminateFinalProject" expanded="True">
             <Node name="LuminateFinalProject" expanded="True">
-              <Node name="Controllers" expanded="True" />
-              <Node name="DataAccessLayer" expanded="True" />
-              <Node name="Models" expanded="True">
-                <Node name="Basket.cs" selected="True" />
-              </Node>
-              <Node name="ViewModels" expanded="True">
-                <Node name="BasketViewModels" expanded="True" />
+              <Node name="Areas" expanded="True">
+                <Node name="Manage" expanded="True">
+                  <Node name="Controllers" expanded="True">
+                    <Node name="UserController.cs" selected="True" />
+                  </Node>
+                  <Node name="Views" expanded="True">
+                    <Node name="Order" expanded="True" />
+                    <Node name="Shared" expanded="True" />
+                    <Node name="User" expanded="True" />
+                  </Node>
+                </Node>
               </Node>
               <Node name="Views" expanded="True">
+                <Node name="AboutUs" expanded="True" />
+                <Node name="Account" expanded="True" />
+                <Node name="Blog" expanded="True" />
+                <Node name="Collections" expanded="True" />
+                <Node name="Product" expanded="True" />
                 <Node name="Shared" expanded="True" />
+              </Node>
+              <Node name="wwwroot" expanded="True">
+                <Node name="assets" expanded="True">
+                  <Node name="css" expanded="True" />
+                  <Node name="js" expanded="True" />
+                </Node>
               </Node>
             </Node>
           </Node>
@@ -36,6 +49,4 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.LuminateFinalProject PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

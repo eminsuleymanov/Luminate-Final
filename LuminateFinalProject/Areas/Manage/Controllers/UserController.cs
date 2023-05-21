@@ -28,7 +28,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
         }
 
 
-
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> Index()
         {
             //Not Working
@@ -54,6 +54,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> ChangeRole(string? userId)
         {
             if (string.IsNullOrWhiteSpace(userId)) return BadRequest();
@@ -73,6 +74,7 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
 
         }
         [HttpPost]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> ChangeRole(UserChangeRole userChangeRole)
         {
             ViewBag.Role = await _roleManager.Roles.Where(r => r.Name != "SuperAdmin").ToListAsync();
@@ -89,6 +91,46 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
 
             return RedirectToAction(nameof(Index));
              
+        }
+        public async Task<IActionResult> BlockUser(string userId)
+        {
+            
+            if (User.IsInRole("SuperAdmin"))
+            {
+                var user = await _userManager.FindByIdAsync(userId);
+
+                if (user != null)
+                {
+                    
+                    var lockoutEndDate = DateTimeOffset.UtcNow.AddHours(5); 
+                    user.LockoutEnd = lockoutEndDate;
+
+                    var result = await _userManager.UpdateAsync(user);
+
+                    if (result.Succeeded)
+                    {
+                        
+                        TempData["Message"] = "User blocked successfully.";
+                    }
+                    else
+                    {
+                        
+                        TempData["ErrorMessage"] = "Failed to block the user.";
+                    }
+                }
+                else
+                {
+                    
+                    TempData["ErrorMessage"] = "User not found.";
+                }
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Access denied.";
+            }
+
+           
+            return RedirectToAction(nameof(Index));
         }
     }
 }

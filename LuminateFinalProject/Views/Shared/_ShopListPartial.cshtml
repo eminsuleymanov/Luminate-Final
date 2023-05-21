@@ -62,7 +62,7 @@
             <!-- Shop Filters -->
             <div class="product-grid-view">
                 <div class="d-flex justify-content-between mb-3 align-items-center">
-                    <p class="results-count mt-3">Showing 1–12 of 27 results</p>
+                    <p class="results-count mt-3">Showing 1–6 of @Model.Products.Count() results</p>
                     <div class="sort-select">
                         <i class='bx bx-chevron-down'></i>
                         <select name="">
@@ -133,7 +133,7 @@
                     <ul class="pagination-box">
                         @if (ViewBag.pageIndex> 1)
                         {
-                            <li><a class="previous pageIn" data-minPrice="@ViewBag.minPrice" data-maxPrice="@ViewBag.maxPrice" data-materialId="@ViewBag.materialId" data-categoryId="@ViewBag.categoryId" data-pageIndex="@(ViewBag.pageIndex-1)"><i class='bx bx-left-arrow-alt'></i></a></li>
+                            <li><a class="previous pageIn" data-minPrice="@ViewBag.minPrice" data-maxPrice="@ViewBag.maxPrice" data-materialId="@ViewBag.materialId" data-categoryId="@ViewBag.categoryId" data-pageIndex="@(ViewBag.pageIndex-1) "><i class='bx bx-left-arrow-alt'></i></a></li>
                         }
                         @for (int i = 1; i <= ViewBag.totalPage; i++)
                         {

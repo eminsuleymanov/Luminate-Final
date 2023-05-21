@@ -27,6 +27,7 @@ namespace LuminateFinalProject.ViewModels.AccountViewModels
         public string? ConfirmPassword { get; set; }
 
         public IEnumerable<Address>? Addresses { get; set; }
+        public IEnumerable<Order> Orders { get; set; }
     }
 }
 

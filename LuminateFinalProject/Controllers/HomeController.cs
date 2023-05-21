@@ -21,7 +21,9 @@ namespace LuminateFinalProject.Controllers
 
         public async Task<IActionResult> Index()
         {
-            IEnumerable<Product> products = await _context.Products.Where(s => s.IsDeleted == false).ToListAsync();
+            IEnumerable<Product> products = await _context.Products
+                .Include(p=>p.Reviews.Where(p=>p.IsDeleted==false))
+                .Where(s => s.IsDeleted == false).ToListAsync();
             products = products.Take(3);
 
 

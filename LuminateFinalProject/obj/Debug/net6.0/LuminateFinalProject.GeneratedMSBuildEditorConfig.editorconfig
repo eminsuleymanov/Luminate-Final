@@ -60,6 +60,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvTWFuYWdlL1ZpZXdzL01hdGVyaWFsL1VwZGF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Areas/Manage/Views/Order/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvTWFuYWdlL1ZpZXdzL09yZGVyL0RldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Areas/Manage/Views/Order/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvTWFuYWdlL1ZpZXdzL09yZGVyL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Areas/Manage/Views/Product/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvTWFuYWdlL1ZpZXdzL1Byb2R1Y3QvQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -108,6 +116,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvTWFuYWdlL1ZpZXdzL19WaWV3U3RhcnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Views/AboutUs/ContactUs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWJvdXRVcy9Db250YWN0VXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Views/AboutUs/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWJvdXRVcy9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9Mb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -124,8 +140,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmFza2V0L0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Views/Blog/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmxvZy9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Views/Collections/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29sbGVjdGlvbnMvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Views/Order/Checkout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXIvQ2hlY2tvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Views/Product/Details.cshtml]
@@ -150,6 +178,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Views/Shared/_CartTotalPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19DYXJ0VG90YWxQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Views/Shared/_CheckoutFormPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19DaGVja291dEZvcm1QYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/eminsuleymanov/Desktop/LuminateFinalProject/LuminateFinalProject/Views/Shared/_Layout.cshtml]
