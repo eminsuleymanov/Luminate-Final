@@ -1,16 +1,40 @@
 ﻿<Properties StartupConfiguration="{23FE470B-0EC0-4D7D-9166-CA8F3042560F}|Default">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.ItemProperties.LuminateFinalProject PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="LuminateFinalProject/Areas/Manage/Controllers/UserController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="LuminateFinalProject/Areas/Manage/Controllers/ProductController.cs">
     <Files>
-      <File FileName="LuminateFinalProject/wwwroot/assets/js/main.js" Line="290" Column="35" />
+      <File FileName="LuminateFinalProject/wwwroot/assets/js/main.js" Line="31" Column="11" />
       <File FileName="LuminateFinalProject/Areas/Manage/Controllers/UserController.cs" Line="99" Column="14" />
-      <File FileName="LuminateFinalProject/Areas/Manage/Views/User/Index.cshtml" Line="56" Column="135" />
+      <File FileName="LuminateFinalProject/Areas/Manage/Views/User/Index.cshtml" />
+      <File FileName="LuminateFinalProject/Controllers/AccountController.cs" Line="169" Column="16" />
+      <File FileName="LuminateFinalProject/Controllers/OrderController.cs" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Controllers/ShopController.cs" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Controllers/CollectionsController.cs" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Views/Collections/Index.cshtml" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Views/Account/Profile.cshtml" Line="126" Column="91" />
+      <File FileName="LuminateFinalProject/Views/Basket/Index.cshtml" Line="42" Column="53" />
+      <File FileName="LuminateFinalProject/Views/Shared/_BasketPartial.cshtml" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/ViewModels/AccountViewModels/ProfileVM.cs" Line="30" Column="35" />
+      <File FileName="LuminateFinalProject/Views/Shared/_AddressFormPartial.cshtml" Line="11" Column="56" />
+      <File FileName="LuminateFinalProject/Models/Address.cs" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Controllers/BasketController.cs" Line="187" Column="24" />
+      <File FileName="LuminateFinalProject/Controllers/ProductController.cs" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Controllers/HomeController.cs" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Views/Product/Details.cshtml" Line="75" Column="83" />
+      <File FileName="LuminateFinalProject/Areas/Manage/Views/Order/Index.cshtml" Line="50" Column="43" />
+      <File FileName="LuminateFinalProject/Areas/Manage/Views/Product/Index.cshtml" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Areas/Manage/Controllers/ProductController.cs" Line="254" Column="45" />
+      <File FileName="LuminateFinalProject/Areas/Manage/Controllers/CategoryController.cs" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Areas/Manage/Controllers/MaterialController.cs" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Areas/Manage/Controllers/OrderController.cs" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Areas/Manage/Views/Product/Details.cshtml" Line="53" Column="92" />
+      <File FileName="LuminateFinalProject/Areas/Manage/Views/Material/Update.cshtml" Line="1" Column="1" />
+      <File FileName="LuminateFinalProject/Areas/Manage/Views/Material/Details.cshtml" Line="35" Column="29" />
+      <File FileName="LuminateFinalProject/Areas/Manage/Views/Category/Details.cshtml" Line="36" Column="60" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -20,27 +44,35 @@
               <Node name="Areas" expanded="True">
                 <Node name="Manage" expanded="True">
                   <Node name="Controllers" expanded="True">
-                    <Node name="UserController.cs" selected="True" />
+                    <Node name="ProductController.cs" selected="True" />
                   </Node>
                   <Node name="Views" expanded="True">
+                    <Node name="Category" expanded="True" />
+                    <Node name="Material" expanded="True" />
                     <Node name="Order" expanded="True" />
+                    <Node name="Product" expanded="True" />
                     <Node name="Shared" expanded="True" />
                     <Node name="User" expanded="True" />
                   </Node>
                 </Node>
               </Node>
+              <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="ViewModels" expanded="True">
+                <Node name="AccountViewModels" expanded="True" />
+              </Node>
               <Node name="Views" expanded="True">
-                <Node name="AboutUs" expanded="True" />
                 <Node name="Account" expanded="True" />
-                <Node name="Blog" expanded="True" />
-                <Node name="Collections" expanded="True" />
-                <Node name="Product" expanded="True" />
-                <Node name="Shared" expanded="True" />
               </Node>
               <Node name="wwwroot" expanded="True">
-                <Node name="assets" expanded="True">
-                  <Node name="css" expanded="True" />
+                <Node name="manage" expanded="True">
                   <Node name="js" expanded="True" />
+                  <Node name="vendor" expanded="True">
+                    <Node name="js" expanded="True" />
+                    <Node name="libs" expanded="True">
+                      <Node name="jquery" expanded="True" />
+                    </Node>
+                  </Node>
                 </Node>
               </Node>
             </Node>
@@ -49,4 +81,5 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
 </Properties>

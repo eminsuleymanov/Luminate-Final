@@ -251,6 +251,10 @@ namespace LuminateFinalProject.Areas.Manage.Controllers
             dbProduct.FullDescription = product.FullDescription;
             dbProduct.Price = product.Price;
             dbProduct.DiscountedPrice = product.DiscountedPrice;
+            dbProduct.Count = product.Count;
+            dbProduct.UpdatedBy = "Admin";
+            dbProduct.UpdatedAt = DateTime.UtcNow.AddHours(4);
+
 
             await _context.SaveChangesAsync();
 

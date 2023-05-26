@@ -47,7 +47,8 @@ namespace LuminateFinalProject.Controllers
             return View(basketVMs);
 
         }
-        [Authorize(Roles = "Member")]
+        [AllowAnonymous]
+        //[Authorize(Roles = "Member")]
         public async Task<IActionResult> AddToBasket(int? id)
         {
             if (id == null) { return BadRequest(); }
@@ -132,7 +133,8 @@ namespace LuminateFinalProject.Controllers
 
 
         [HttpGet]
-        [Authorize(Roles = "Member")]
+        [AllowAnonymous]
+        //[Authorize(Roles = "Member")]
         public async Task<IActionResult> DeleteFromBasket(int? id)
         {
             if (id == null) return BadRequest();
@@ -182,7 +184,8 @@ namespace LuminateFinalProject.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Member")]
+        [AllowAnonymous]
+        //[Authorize(Roles = "Member")]
         public async Task<IActionResult> RefreshBasket()
         {
             string basket = HttpContext.Request.Cookies["basket"];
@@ -207,7 +210,8 @@ namespace LuminateFinalProject.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Member")]
+        [AllowAnonymous]
+        //[Authorize(Roles = "Member")]
         public async Task<IActionResult> RefreshIndex()
         {
             string basket = HttpContext.Request.Cookies["basket"];
@@ -234,7 +238,8 @@ namespace LuminateFinalProject.Controllers
 
 
         [HttpGet]
-        [Authorize(Roles = "Member")]
+        [AllowAnonymous]
+        //[Authorize(Roles = "Member")]
         public async Task<IActionResult> DeleteFromCart(int? id)
         {
             if (id == null) return BadRequest();

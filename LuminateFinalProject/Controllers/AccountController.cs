@@ -142,29 +142,31 @@ namespace LuminateFinalProject.Controllers
             }
 
             string basket = HttpContext.Request.Cookies["basket"];
-            if (string.IsNullOrWhiteSpace(basket))
+            HttpContext.Response.Cookies.Append("basket", "");
+            if (appUser.Baskets != null && appUser.Baskets.Count() > 0)
             {
-                if (appUser.Baskets != null && appUser.Baskets.Count()>0)
+                List<BasketVM> basketVMs = new List<BasketVM>();
+                foreach (Basket basket1 in appUser.Baskets)
                 {
-                    List<BasketVM> basketVMs = new List<BasketVM>();
-                    foreach (Basket basket1 in appUser.Baskets)
+                    BasketVM basketVM = new BasketVM
                     {
-                        BasketVM basketVM = new BasketVM
-                        {
-                            Id = (int)basket1.ProductId,
-                            Count = basket1.Count
-                        };
-                        basketVMs.Add(basketVM);
-                    }
-                    basket = JsonConvert.SerializeObject(basketVMs);
-                    HttpContext.Response.Cookies.Append("basket", basket);
+                        Id = (int)basket1.ProductId,
+                        Count = basket1.Count
+                    };
+                    basketVMs.Add(basketVM);
                 }
+                basket = JsonConvert.SerializeObject(basketVMs);
+                HttpContext.Response.Cookies.Append("basket", basket);
+            }
+            //if (string.IsNullOrWhiteSpace(basket))
+            //{
+                
 
-            }
-            else
-            {
-                HttpContext.Response.Cookies.Append("basket", "");
-            }
+            //}
+            //else
+            //{
+            //    HttpContext.Response.Cookies.Append("basket", "");
+            //}
 
 
             return RedirectToAction("profile","Account");
@@ -227,7 +229,9 @@ namespace LuminateFinalProject.Controllers
             {
                 appUser.UserName = profileVM.Username;
             }
-
+            appUser = await _userManager.Users
+       .Include(u => u.Orders)
+       .FirstOrDefaultAsync(u => u.NormalizedUserName == User.Identity.Name.ToUpperInvariant());
 
             IdentityResult identityResult  = await _userManager.UpdateAsync(appUser);
             if (!identityResult.Succeeded)
